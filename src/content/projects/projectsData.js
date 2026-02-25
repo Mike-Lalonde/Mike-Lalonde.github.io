@@ -35,7 +35,7 @@ export const projects = [
   tech: ["Python"],
   links: {
     repo: "https://github.com/Mike-Lalonde/python-algorithms-games-text-analytics",
-    demo: null,
+    demo: "/projects/python-suite/whale-of-a-tale-demo.mp4",
     writeup: null
   },
   media: {

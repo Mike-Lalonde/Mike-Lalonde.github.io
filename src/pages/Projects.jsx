@@ -98,15 +98,35 @@ function ProjectDetails({ project }) {
       <div className="proj-section">
         <div className="proj-section-title">Preview</div>
 
-        {project.media?.embedUrl ? (
-          <div className="proj-preview">
-            <iframe
-              title="Project preview"
-              src={project.media.embedUrl}
-            />
-          </div>
-        ) : project.media?.screenshots?.length ? (
-          <div className="proj-preview">
+        <div className="proj-preview">
+
+          {/* Video Support */}
+          {project.media?.embedUrl &&
+            project.media.embedUrl.endsWith(".mp4") && (
+              <video
+                controls
+                className="proj-video"
+              >
+                <source
+                  src={project.media.embedUrl}
+                  type="video/mp4"
+                />
+                Your browser does not support the video tag.
+              </video>
+            )}
+
+          {/* Iframe Support (for future web demos) */}
+          {project.media?.embedUrl &&
+            !project.media.embedUrl.endsWith(".mp4") && (
+              <iframe
+                title="Project preview"
+                src={project.media.embedUrl}
+                className="proj-iframe"
+              />
+            )}
+
+          {/* Screenshot Gallery */}
+          {project.media?.screenshots?.length > 0 && (
             <div className="proj-screenshot-grid">
               {project.media.screenshots.map((src, idx) => (
                 <img
@@ -118,12 +138,15 @@ function ProjectDetails({ project }) {
                 />
               ))}
             </div>
-          </div>
-        ) : (
-          <div className="proj-preview muted">
-            Add screenshots or an embed URL when ready.
-          </div>
-        )}
+          )}
+
+          {!project.media?.embedUrl &&
+            !project.media?.screenshots?.length && (
+              <div className="muted">
+                Add screenshots or an embed URL when ready.
+              </div>
+            )}
+        </div>
       </div>
 
       <div className="proj-actions">
@@ -178,23 +201,18 @@ export default function Projects() {
     [category]
   );
 
-  const [selectedId, setSelectedId] = useState(
-    () => filtered[0]?.id || ""
-  );
+  const [selectedId, setSelectedId] = useState("");
 
-  const selected = useMemo(
-    () =>
-      filtered.find((p) => p.id === selectedId) ||
-      filtered[0],
-    [filtered, selectedId]
-  );
-
-  // keep selection valid when switching tabs
   useEffect(() => {
-    if (filtered.length) {
+    if (filtered.length > 0) {
       setSelectedId(filtered[0].id);
     }
-  }, [category]);
+  }, [category, filtered]);
+
+  const selected = useMemo(
+    () => filtered.find((p) => p.id === selectedId),
+    [filtered, selectedId]
+  );
 
   return (
     <div className="stack">
@@ -223,7 +241,7 @@ export default function Projects() {
         </div>
 
         <div className="proj-right">
-          {selected ? <ProjectDetails project={selected} /> : null}
+          {selected && <ProjectDetails project={selected} />}
         </div>
       </div>
     </div>
