@@ -40,10 +40,12 @@ export const projects = [
   },
   media: {
     screenshots: [
-      "/src/assets/projects/python-suite/1 Anchor and sails (Tic tac toe).png",
-      "/src/assets/projects/python-suite/2 AnchourAndSails.png",
-      "/src/assets/projects/python-suite/3 whale of a tail report.png",
-      "/src/assets/projects/python-suite/4 Message recieved.png"
+      screenshots: [
+  "/projects/python-suite/tictactoe-1.png",
+  "/projects/python-suite/tictactoe-2.png",
+  "/projects/python-suite/whale-report-1.png",
+  "/projects/python-suite/whale-report-2.png"
+],
     ],
     embedUrl: null
   },
