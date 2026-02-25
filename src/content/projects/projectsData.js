@@ -17,18 +17,18 @@ export const projects = [
   id: "python-algorithms-suite",
   category: "ai",
   title: "Python Algorithms & Interactive Systems",
-  subtitle: "CLI games, string processing, and text analytics",
+  subtitle: "CLI Games, String Processing & Text Analytics",
   summary:
-    "A multi-part Python project featuring algorithmic string manipulation, a 2D grid-based game engine (Tic-Tac-Toe), and a text analytics pipeline that generates dynamic HTML reports.",
+    "A multi-part Python project featuring algorithmic string manipulation, a 2D grid-based game engine (Tic-Tac-Toe), and a text analytics pipeline that generates dynamic HTML reports with hidden message extraction.",
   status: "Complete",
   skills: [
     "Algorithm Design",
     "String Processing",
     "2D Data Structures",
-    "State Machines",
+    "State Management",
     "File I/O",
     "Text Normalization",
-    "Frequency Analysis",
+    "Word Frequency Analysis",
     "HTML Generation",
     "CLI Interface Design"
   ],
@@ -39,7 +39,12 @@ export const projects = [
     writeup: null
   },
   media: {
-    screenshots: [],
+    screenshots: [
+      "/src/assets/projects/python-suite/1 Anchor and sails (Tic tac toe).png",
+      "/src/assets/projects/python-suite/2 AnchourAndSails.png",
+      "/src/assets/projects/python-suite/3 whale of a tail report.png",
+      "/src/assets/projects/python-suite/4 Message recieved.png"
+    ],
     embedUrl: null
   },
 },
