@@ -394,3 +394,22 @@ main.container {
 .projects-page iframe {
   max-width: 100%;
 }
+
+/* ===== Confined demo video box ===== */
+.proj-video {
+  display: block;
+  width: 100%;
+  max-width: 720px;      /* player width cap */
+  aspect-ratio: 16 / 9;  /* keeps it proportional */
+  height: auto;
+  margin: 12px auto 18px; /* center it */
+  border-radius: 14px;
+  border: 1px solid var(--line);
+  box-shadow: var(--shadow);
+  background: #000;      /* letterbox background */
+}
+
+/* If your browser ignores aspect-ratio on video, this ensures it never grows tall */
+.proj-preview .proj-video {
+  max-height: 360px;
+}

@@ -56,6 +56,7 @@ function Chip({ children, accent }) {
 
 function ProjectDetails({ project }) {
   const accent = CATEGORY_META[project.category]?.accent || "web";
+  const [showDemo, setShowDemo] = useState(false);
 
   return (
     <div className={`card proj-detail accent-${accent}`}>
