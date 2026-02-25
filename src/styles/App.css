@@ -26,6 +26,9 @@
   --r-card: 18px;
   --r-chip: 999px;
   --r-btn: 12px;
+
+  /* Layout */
+  --nav-h: 72px; /* adjust ONLY this if Projects still scrolls */
 }
 
 body {
@@ -37,7 +40,11 @@ body {
   color: var(--text);
 }
 
-.app { min-height: 100vh; display: flex; flex-direction: column; }
+.app {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
 
 .container {
   width: min(1100px, calc(100% - 32px));
@@ -85,7 +92,11 @@ body {
   border-color: var(--accent);
   color: #ffffff;
 }
-main.container { padding: 22px 0 40px; flex: 1; }
+
+main.container {
+  padding: 22px 0 40px;
+  flex: 1;
+}
 
 .card {
   background: var(--card);
@@ -101,7 +112,7 @@ main.container { padding: 22px 0 40px; flex: 1; }
 .hero-title { margin: 0 0 8px; font-size: clamp(2rem, 4vw, 3rem); }
 .hero-subtitle { margin: 0 0 12px; color: var(--muted); font-size: 1.05rem; }
 
-.stack { display: grid; gap: 16px; }
+.stack { display: grid; gap: 16px; min-width: 0; }
 .grid { display: grid; gap: 16px; grid-template-columns: repeat(2, minmax(0, 1fr)); }
 @media (max-width: 900px) { .grid { grid-template-columns: 1fr; } }
 
@@ -209,12 +220,17 @@ main.container { padding: 22px 0 40px; flex: 1; }
   grid-template-columns: 340px 1fr;
   gap: 16px;
   align-items: start;
+  min-width: 0;
 }
 @media (max-width: 980px) {
   .proj-split { grid-template-columns: 1fr; }
 }
 
-.proj-left { padding-bottom: 10px; }
+.proj-left {
+  padding-bottom: 10px;
+  min-width: 0;
+}
+
 .proj-list {
   margin-top: 12px;
   display: grid;
@@ -242,11 +258,9 @@ main.container { padding: 22px 0 40px; flex: 1; }
 .proj-item-title { font-weight: 720; }
 .proj-item-sub { color: var(--muted); font-size: 0.92rem; margin-top: 3px; }
 
-.proj-right { display: grid; gap: 16px; }
+.proj-right { display: grid; gap: 16px; min-width: 0; }
 
-.proj-detail {
-  border-left: 6px solid rgba(183, 121, 47, 0.35);
-}
+.proj-detail { border-left: 6px solid rgba(183, 121, 47, 0.35); }
 .proj-detail.accent-web { border-left-color: rgba(43,108,176,0.45); }
 .proj-detail.accent-embedded { border-left-color: rgba(47,133,90,0.45); }
 .proj-detail.accent-ai { border-left-color: rgba(107,70,193,0.45); }
@@ -293,7 +307,9 @@ main.container { padding: 22px 0 40px; flex: 1; }
   border-radius: 16px;
   padding: 14px;
   background: rgba(255, 255, 255, 0.55);
+  min-width: 0;
 }
+
 .proj-preview iframe {
   width: 100%;
   height: 420px;
@@ -302,4 +318,79 @@ main.container { padding: 22px 0 40px; flex: 1; }
   background: #fff;
 }
 
-.proj-actions { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 14px; }
+.proj-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 14px;
+}
+
+/* ------------------------------ */
+/* Projects: Screenshot thumbnails */
+/* ------------------------------ */
+.proj-screenshot-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 16px;
+  margin-top: 12px;
+}
+
+.proj-screenshot {
+  display: block;
+  width: 100%;
+  height: 200px;
+  object-fit: contain;
+  background: #f6faf8;
+  border-radius: 12px;
+  border: 1px solid #d9e5dd;
+  padding: 8px;
+}
+
+/* ------------------------------ */
+/* Projects: NO page vertical scroll */
+/* Add class "projects-page" to Projects.jsx wrapper */
+/* ------------------------------ */
+.projects-page {
+  height: calc(100vh - var(--nav-h));
+  overflow: hidden;
+  min-width: 0;
+}
+
+.projects-page .proj-split {
+  height: 100%;
+  overflow: hidden;
+  min-width: 0;
+  align-items: stretch;
+}
+
+/* Make the left card a column so the list can fill remaining height */
+.projects-page .proj-left {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  overflow: hidden;
+  min-width: 0;
+}
+
+/* List becomes the scroll area */
+.projects-page .proj-list {
+  flex: 1;
+  max-height: none;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+/* Right panel scrolls internally (details can be long) */
+.projects-page .proj-right {
+  height: 100%;
+  overflow-y: auto;
+  overflow-x: hidden;
+  min-width: 0;
+}
+
+/* Safety: never allow media to force horizontal overflow */
+.projects-page img,
+.projects-page video,
+.projects-page iframe {
+  max-width: 100%;
+}

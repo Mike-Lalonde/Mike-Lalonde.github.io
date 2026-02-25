@@ -3,7 +3,7 @@ import { useMemo, useState, useEffect } from "react";
 import { projects, CATEGORY, CATEGORY_META } from "../content/projects/projectsData";
 
 function CategoryTabs({ value, onChange }) {
-  const tabs = [CATEGORY.WEB, CATEGORY.EMBEDDED, CATEGORY.AI];
+  const tabs = [CATEGORY.AI, CATEGORY.EMBEDDED, CATEGORY.WEB];
 
   return (
     <div className="proj-tabs">
@@ -62,9 +62,7 @@ function ProjectDetails({ project }) {
       <div className="proj-detail-head">
         <div>
           <div className="card-title">{project.title}</div>
-          <div className="card-subtitle">
-            {project.subtitle || project.status}
-          </div>
+          <div className="card-subtitle">{project.subtitle || project.status}</div>
         </div>
         <div className="proj-detail-status">{project.status}</div>
       </div>
@@ -99,33 +97,21 @@ function ProjectDetails({ project }) {
         <div className="proj-section-title">Preview</div>
 
         <div className="proj-preview">
+          {project.media?.embedUrl && project.media.embedUrl.endsWith(".mp4") && (
+            <video controls className="proj-video">
+              <source src={project.media.embedUrl} type="video/mp4" />
+              Your browser does not support the video tag.
+            </video>
+          )}
 
-          {/* Video Support */}
-          {project.media?.embedUrl &&
-            project.media.embedUrl.endsWith(".mp4") && (
-              <video
-                controls
-                className="proj-video"
-              >
-                <source
-                  src={project.media.embedUrl}
-                  type="video/mp4"
-                />
-                Your browser does not support the video tag.
-              </video>
-            )}
+          {project.media?.embedUrl && !project.media.embedUrl.endsWith(".mp4") && (
+            <iframe
+              title="Project preview"
+              src={project.media.embedUrl}
+              className="proj-iframe"
+            />
+          )}
 
-          {/* Iframe Support (for future web demos) */}
-          {project.media?.embedUrl &&
-            !project.media.embedUrl.endsWith(".mp4") && (
-              <iframe
-                title="Project preview"
-                src={project.media.embedUrl}
-                className="proj-iframe"
-              />
-            )}
-
-          {/* Screenshot Gallery */}
           {project.media?.screenshots?.length > 0 && (
             <div className="proj-screenshot-grid">
               {project.media.screenshots.map((src, idx) => (
@@ -140,23 +126,15 @@ function ProjectDetails({ project }) {
             </div>
           )}
 
-          {!project.media?.embedUrl &&
-            !project.media?.screenshots?.length && (
-              <div className="muted">
-                Add screenshots or an embed URL when ready.
-              </div>
-            )}
+          {!project.media?.embedUrl && !project.media?.screenshots?.length && (
+            <div className="muted">Add screenshots or an embed URL when ready.</div>
+          )}
         </div>
       </div>
 
       <div className="proj-actions">
         {project.links?.repo ? (
-          <a
-            className="btn"
-            href={project.links.repo}
-            target="_blank"
-            rel="noreferrer"
-          >
+          <a className="btn" href={project.links.repo} target="_blank" rel="noreferrer">
             Repo
           </a>
         ) : (
@@ -164,12 +142,7 @@ function ProjectDetails({ project }) {
         )}
 
         {project.links?.demo ? (
-          <a
-            className="btn"
-            href={project.links.demo}
-            target="_blank"
-            rel="noreferrer"
-          >
+          <a className="btn" href={project.links.demo} target="_blank" rel="noreferrer">
             Live Demo
           </a>
         ) : (
@@ -177,12 +150,7 @@ function ProjectDetails({ project }) {
         )}
 
         {project.links?.writeup ? (
-          <a
-            className="btn"
-            href={project.links.writeup}
-            target="_blank"
-            rel="noreferrer"
-          >
+          <a className="btn" href={project.links.writeup} target="_blank" rel="noreferrer">
             Case Study
           </a>
         ) : (
@@ -194,7 +162,7 @@ function ProjectDetails({ project }) {
 }
 
 export default function Projects() {
-  const [category, setCategory] = useState(CATEGORY.WEB);
+  const [category, setCategory] = useState(CATEGORY.AI);
 
   const filtered = useMemo(
     () => projects.filter((p) => p.category === category),
@@ -206,6 +174,8 @@ export default function Projects() {
   useEffect(() => {
     if (filtered.length > 0) {
       setSelectedId(filtered[0].id);
+    } else {
+      setSelectedId("");
     }
   }, [category, filtered]);
 
@@ -215,34 +185,23 @@ export default function Projects() {
   );
 
   return (
-    <div className="stack">
+    <div className="stack projects-page">
       <h2>Projects</h2>
 
       <div className="muted">
-        Select a project to view the skills/knowledge used and supporting
-        evidence without leaving the page.
+        Select a project to view the skills/knowledge used and supporting evidence without leaving the page.
       </div>
 
       <CategoryTabs value={category} onChange={setCategory} />
 
       <div className="proj-split">
         <div className="card proj-left">
-          <div className="card-title">
-            {CATEGORY_META[category].label}
-          </div>
-          <div className="card-subtitle">
-            Click a project to view details
-          </div>
-          <ProjectList
-            items={filtered}
-            selectedId={selected?.id}
-            onSelect={setSelectedId}
-          />
+          <div className="card-title">{CATEGORY_META[category].label}</div>
+          <div className="card-subtitle">Click a project to view details</div>
+          <ProjectList items={filtered} selectedId={selected?.id} onSelect={setSelectedId} />
         </div>
 
-        <div className="proj-right">
-          {selected && <ProjectDetails project={selected} />}
-        </div>
+        <div className="proj-right">{selected && <ProjectDetails project={selected} />}</div>
       </div>
     </div>
   );
