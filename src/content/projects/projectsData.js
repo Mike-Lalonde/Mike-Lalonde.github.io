@@ -40,12 +40,10 @@ export const projects = [
   },
   media: {
     screenshots: [
-      screenshots: [
-  "/projects/python-suite/tictactoe-1.png",
-  "/projects/python-suite/tictactoe-2.png",
+  "/projects/python-suite/tic-tac-toe-1.png",
+  "/projects/python-suite/tic-tac-toe-2.png",
   "/projects/python-suite/whale-report-1.png",
   "/projects/python-suite/whale-report-2.png"
-],
     ],
     embedUrl: null
   },

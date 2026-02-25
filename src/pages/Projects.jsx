@@ -1,5 +1,5 @@
 // src/pages/Projects.jsx
-import { useMemo, useState } from "react";
+import { useMemo, useState, useEffect } from "react";
 import { projects, CATEGORY, CATEGORY_META } from "../content/projects/projectsData";
 
 function CategoryTabs({ value, onChange }) {
@@ -13,7 +13,11 @@ function CategoryTabs({ value, onChange }) {
         return (
           <button
             key={k}
-            className={active ? `proj-tab active accent-${meta.accent}` : `proj-tab accent-${meta.accent}`}
+            className={
+              active
+                ? `proj-tab active accent-${meta.accent}`
+                : `proj-tab accent-${meta.accent}`
+            }
             onClick={() => onChange(k)}
             type="button"
           >
@@ -58,7 +62,9 @@ function ProjectDetails({ project }) {
       <div className="proj-detail-head">
         <div>
           <div className="card-title">{project.title}</div>
-          <div className="card-subtitle">{project.subtitle || project.status}</div>
+          <div className="card-subtitle">
+            {project.subtitle || project.status}
+          </div>
         </div>
         <div className="proj-detail-status">{project.status}</div>
       </div>
@@ -94,18 +100,40 @@ function ProjectDetails({ project }) {
 
         {project.media?.embedUrl ? (
           <div className="proj-preview">
-            <iframe title="Project preview" src={project.media.embedUrl} />
+            <iframe
+              title="Project preview"
+              src={project.media.embedUrl}
+            />
           </div>
         ) : project.media?.screenshots?.length ? (
-          <div className="proj-preview muted">Screenshot gallery coming next.</div>
+          <div className="proj-preview">
+            <div className="proj-screenshot-grid">
+              {project.media.screenshots.map((src, idx) => (
+                <img
+                  key={src || idx}
+                  src={src}
+                  alt={`${project.title} screenshot ${idx + 1}`}
+                  className="proj-screenshot"
+                  loading="lazy"
+                />
+              ))}
+            </div>
+          </div>
         ) : (
-          <div className="proj-preview muted">Add screenshots or an embed URL when ready.</div>
+          <div className="proj-preview muted">
+            Add screenshots or an embed URL when ready.
+          </div>
         )}
       </div>
 
       <div className="proj-actions">
         {project.links?.repo ? (
-          <a className="btn" href={project.links.repo} target="_blank" rel="noreferrer">
+          <a
+            className="btn"
+            href={project.links.repo}
+            target="_blank"
+            rel="noreferrer"
+          >
             Repo
           </a>
         ) : (
@@ -113,7 +141,12 @@ function ProjectDetails({ project }) {
         )}
 
         {project.links?.demo ? (
-          <a className="btn" href={project.links.demo} target="_blank" rel="noreferrer">
+          <a
+            className="btn"
+            href={project.links.demo}
+            target="_blank"
+            rel="noreferrer"
+          >
             Live Demo
           </a>
         ) : (
@@ -121,7 +154,12 @@ function ProjectDetails({ project }) {
         )}
 
         {project.links?.writeup ? (
-          <a className="btn" href={project.links.writeup} target="_blank" rel="noreferrer">
+          <a
+            className="btn"
+            href={project.links.writeup}
+            target="_blank"
+            rel="noreferrer"
+          >
             Case Study
           </a>
         ) : (
@@ -135,38 +173,58 @@ function ProjectDetails({ project }) {
 export default function Projects() {
   const [category, setCategory] = useState(CATEGORY.WEB);
 
-  const filtered = useMemo(() => projects.filter((p) => p.category === category), [category]);
+  const filtered = useMemo(
+    () => projects.filter((p) => p.category === category),
+    [category]
+  );
 
-  const [selectedId, setSelectedId] = useState(() => filtered[0]?.id || "");
+  const [selectedId, setSelectedId] = useState(
+    () => filtered[0]?.id || ""
+  );
+
   const selected = useMemo(
-    () => filtered.find((p) => p.id === selectedId) || filtered[0],
+    () =>
+      filtered.find((p) => p.id === selectedId) ||
+      filtered[0],
     [filtered, selectedId]
   );
 
   // keep selection valid when switching tabs
-  if (filtered.length && selected && selected.category !== category) {
-    // React will re-render; this is fine, but if you prefer we can move this into useEffect.
-    setSelectedId(filtered[0].id);
-  }
+  useEffect(() => {
+    if (filtered.length) {
+      setSelectedId(filtered[0].id);
+    }
+  }, [category]);
 
   return (
     <div className="stack">
       <h2>Projects</h2>
 
       <div className="muted">
-        Select a project to view the skills/knowledge used and supporting evidence without leaving the page.
+        Select a project to view the skills/knowledge used and supporting
+        evidence without leaving the page.
       </div>
 
       <CategoryTabs value={category} onChange={setCategory} />
 
       <div className="proj-split">
         <div className="card proj-left">
-          <div className="card-title">{CATEGORY_META[category].label}</div>
-          <div className="card-subtitle">Click a project to view details</div>
-          <ProjectList items={filtered} selectedId={selected?.id} onSelect={setSelectedId} />
+          <div className="card-title">
+            {CATEGORY_META[category].label}
+          </div>
+          <div className="card-subtitle">
+            Click a project to view details
+          </div>
+          <ProjectList
+            items={filtered}
+            selectedId={selected?.id}
+            onSelect={setSelectedId}
+          />
         </div>
 
-        <div className="proj-right">{selected ? <ProjectDetails project={selected} /> : null}</div>
+        <div className="proj-right">
+          {selected ? <ProjectDetails project={selected} /> : null}
+        </div>
       </div>
     </div>
   );
