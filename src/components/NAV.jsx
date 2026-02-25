@@ -2,11 +2,9 @@ import { NavLink } from "react-router-dom";
 
 const links = [
   { to: "/", label: "Home" },
-  { to: "/resume", label: "Resume" },
+  { to: "/about", label: "About" },
   { to: "/projects", label: "Projects" },
-  { to: "/learning", label: "Learning" },
-  { to: "/notebooks", label: "Notebooks" },
-  { to: "/assistant", label: "Assistant" },
+  { to: "/resume", label: "Resume" },
 ];
 
 export default function Nav() {
@@ -15,7 +13,7 @@ export default function Nav() {
       <div className="container header-inner">
         <div className="brand">
           <div className="brand-title">Mike Lalonde</div>
-          <div className="brand-subtitle">AI Systems • Embedded • Full Stack</div>
+          {/* <div className="brand-subtitle">AI Systems • Embedded • Full Stack</div> */}
         </div>
 
         <nav className="nav">

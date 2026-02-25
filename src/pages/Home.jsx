@@ -7,9 +7,9 @@ export default function Home() {
     <div className="stack">
       <section className="hero card">
         <div>
-          <h1 className="hero-title">Mike Lalonde</h1>
+          <h1 className="hero-title"> AI Systems Engineer </h1>
           <p className="hero-subtitle">
-            AI Systems Engineer (in training) • Embedded Systems • Full-Stack Development
+            • Embedded Systems • Full-Stack Development
           </p>
           <p className="muted">
             This portfolio is a living workspace: resumes, case studies, notebooks, and what I’m learning.
