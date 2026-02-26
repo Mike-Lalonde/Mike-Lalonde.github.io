@@ -160,6 +160,12 @@ function ProjectDetails({ project }) {
         ) : (
           <span className="btn disabled">Case Study</span>
         )}
+        {showDemo && project.links?.demo && (
+          <video controls className="proj-video">
+            <source src={project.links.demo} type="video/mp4" />
+            Your browser does not support the video tag.
+          </video>
+        )}
       </div>
     </div>
   );
