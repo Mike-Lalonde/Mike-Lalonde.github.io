@@ -1,5 +1,5 @@
 // src/pages/Projects.jsx
-import { useMemo, useState, useEffect } from "react";
+import { useMemo, useState, useEffect, useRef } from "react";
 import { projects, CATEGORY, CATEGORY_META } from "../content/projects/projectsData";
 
 function CategoryTabs({ value, onChange }) {
@@ -57,7 +57,8 @@ function Chip({ children, accent }) {
 function ProjectDetails({ project }) {
   const accent = CATEGORY_META[project.category]?.accent || "web";
   const [showDemo, setShowDemo] = useState(false);
-
+  const videoRef = useRef(null);
+  
   return (
     <div className={`card proj-detail accent-${accent}`}>
       <div className="proj-detail-head">
@@ -146,7 +147,20 @@ function ProjectDetails({ project }) {
           <button
             className="btn"
             type="button"
-            onClick={() => setShowDemo(prev => !prev)}
+            onClick={() => {
+            setShowDemo(prev => {
+              const next = !prev;
+              if (next) {
+                setTimeout(() => {
+                  videoRef.current?.scrollIntoView({
+                    behavior: "smooth",
+                    block: "center"
+                  });
+                }, 50);
+              }
+              return next;
+            });
+          }}
           >
             {showDemo ? "Hide Demo" : "Live Demo"}
           </button>
@@ -161,7 +175,11 @@ function ProjectDetails({ project }) {
           <span className="btn disabled">Case Study</span>
         )}
         {showDemo && project.links?.demo && (
-          <video controls className="proj-video">
+          <video
+            ref={videoRef}
+            controls
+            className="proj-video"
+          >
             <source src={project.links.demo} type="video/mp4" />
             Your browser does not support the video tag.
           </video>
