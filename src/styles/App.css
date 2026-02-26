@@ -1,10 +1,10 @@
 :root {
   /* Mint Base */
-  --bg: #2c8c72;           /* clean mint */
-  --bg2: #9df2b5;          /* slightly deeper mint */
+  --bg: #2c8c72;           
+  --bg2: #9df2b5;        
   --card: #d7f5e2;
 
-  --text: #1b2b27;         /* deep teal-charcoal */
+  --text: #1b2b27;      
   --muted: #4f6b63;
   --line: #cfe5dd;
   --shadow: 0 10px 28px rgba(27, 43, 39, 0.08);
@@ -14,13 +14,13 @@
   --accent-soft: rgba(31, 111, 99, 0.12);
 
   /* Category accents */
-  --web: #2f7fa3;               /* clean blue */
+  --web: #2f7fa3;            
   --web-soft: rgba(47,127,163,0.12);
 
-  --embedded: #2e8b57;          /* natural green */
+  --embedded: #2e8b57;          
   --embedded-soft: rgba(46,139,87,0.12);
 
-  --ai: #3b6fb6;                /* deep blue */
+  --ai: #3b6fb6;               
   --ai-soft: rgba(59,111,182,0.12);
 
   --r-card: 18px;
@@ -28,7 +28,7 @@
   --r-btn: 12px;
 
   /* Layout */
-  --nav-h: 72px; /* adjust ONLY this if Projects still scrolls */
+  --nav-h: 72px; /* adjust ONLY if Projects still scrolls vertically*/
 }
 
 body {
@@ -71,9 +71,9 @@ body {
 .brand-title { font-weight: 850; letter-spacing: 0.2px; }
 .brand-subtitle { color: var(--muted); font-size: 0.92rem; margin-top: 2px; }
 
-.nav { display: flex; flex-wrap: wrap; gap: 10px; }
+.nav { display: flex; flex-wrap: wrap; gap: 5px; }
 .nav-link {
-  padding: 8px 12px;
+  padding: 4px 12px;
   border-radius: 10px;
   color: var(--muted);
   border: 1px solid transparent;
@@ -160,8 +160,8 @@ main.container {
 /* QR */
 .qr-card { display: grid; gap: 10px; }
 .qr-img {
-  width: 220px;
-  height: 220px;
+  width: 120px;
+  height: 120px;
   border-radius: 14px;
   border: 1px solid var(--line);
   background: #fff;
@@ -186,7 +186,7 @@ main.container {
 .accent-ai { --cat: var(--ai); --cat-soft: var(--ai-soft); }
 
 /* ------------------------------ */
-/* Projects Split View (Option A) */
+/* Projects Split View            */
 /* ------------------------------ */
 
 .proj-tabs {
@@ -258,9 +258,9 @@ main.container {
 .proj-item-title { font-weight: 720; }
 .proj-item-sub { color: var(--muted); font-size: 0.92rem; margin-top: 3px; }
 
-.proj-right { display: grid; gap: 16px; min-width: 0; }
+.proj-right { display: grid; margin-top: 32px; min-width: 0; }
 
-.proj-detail { border-left: 6px solid rgba(183, 121, 47, 0.35); }
+.proj-detail { border-left: 6px  solid rgba(183, 121, 47, 0.35); }
 .proj-detail.accent-web { border-left-color: rgba(43,108,176,0.45); }
 .proj-detail.accent-embedded { border-left-color: rgba(47,133,90,0.45); }
 .proj-detail.accent-ai { border-left-color: rgba(107,70,193,0.45); }

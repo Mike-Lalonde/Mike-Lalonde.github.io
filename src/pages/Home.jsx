@@ -5,7 +5,7 @@ export default function Home() {
 
   return (
     <div className="stack">
-      <section className="hero card">
+      {/* <section className="hero card">
         <div>
           <h1 className="hero-title"> AI Systems Engineer </h1>
           <p className="hero-subtitle">
@@ -23,9 +23,9 @@ export default function Home() {
             </a>
           </div>
         </div>
-      </section>
+      </section> */}
       <div className="card">
-      <div className="card-title">Welcome to My Technical Portfolio</div>
+      <div className="card-title"><h2>Welcome to My Technical Portfolio</h2></div>
 
         <p className="muted">
           This portfolio is a work in progress and was initiated on <strong>February 18, 2026</strong>.
