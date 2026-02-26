@@ -48,33 +48,39 @@ export const projects = [
       embedUrl: "",
     },
   },
-
-  {
-    id: "my-first-neural-network",
-    category: CATEGORY.AI,
-    title: "My First Neural Network (NumPy)",
-    subtitle: "Feedforward NN built from scratch on MNIST",
-    summary:
-      "A from-scratch neural network implemented using NumPy and SciPy to demonstrate forward propagation, backpropagation, weight updates, and model persistence without using high-level frameworks like PyTorch or TensorFlow.",
-    status: "Complete",
-    skills: [
-      "Neural Network Fundamentals",
-      "Backpropagation",
-      "Matrix Multiplication",
-      "Gradient-Based Optimization",
-      "Model Persistence",
-    ],
-    tech: ["Python", "NumPy", "SciPy", "tqdm"],
-    links: {
-      repo: "https://github.com/Mike-Lalonde/myfirstneuralnetwork",
-      demo: "",
-      writeup: "",
-    },
-    media: {
-      screenshots: [],
-      embedUrl: "",
-    },
+{
+  id: "neural-network-first-principles",
+  category: CATEGORY.AI,
+  title: "Neural Network from First Principles",
+  subtitle: "Manual Forward & Backpropagation (NumPy)",
+  summary:
+    "A fully manual feedforward neural network implemented using NumPy and SciPy to demonstrate matrix-based forward propagation, gradient computation, and backpropagation without high-level deep learning frameworks. The network was trained on MNIST-style data and includes parameter counting, training loops, loss tracking, and model serialization.",
+  status: "Complete",
+  skills: [
+    "Neural Network Architecture Design",
+    "Forward Propagation",
+    "Backpropagation",
+    "Gradient-Based Optimization",
+    "Matrix Operations & Linear Algebra",
+    "Loss Computation",
+    "Model Serialization"
+  ],
+  tech: [
+    "Python",
+    "NumPy",
+    "SciPy",
+    "tqdm"
+  ],
+  links: {
+    repo: "https://github.com/Mike-Lalonde/myfirstneuralnetwork",
+    demo: "",
+    writeup: ""
   },
+  media: {
+    screenshots: [],
+    embedUrl: ""
+  }
+},
 
   {
     id: "chip8-emulator",
