@@ -143,13 +143,16 @@ function ProjectDetails({ project }) {
         )}
 
         {project.links?.demo ? (
-          <a className="btn" href={project.links.demo} target="_blank" rel="noreferrer">
-            Live Demo
-          </a>
+          <button
+            className="btn"
+            type="button"
+            onClick={() => setShowDemo(prev => !prev)}
+          >
+            {showDemo ? "Hide Demo" : "Live Demo"}
+          </button>
         ) : (
           <span className="btn disabled">Live Demo</span>
         )}
-
         {project.links?.writeup ? (
           <a className="btn" href={project.links.writeup} target="_blank" rel="noreferrer">
             Case Study
