@@ -1,13 +1,14 @@
 import { NavLink } from "react-router-dom";
 
+export default function Nav() {
 const links = [
   { to: "/", label: "Home" },
   { to: "/about", label: "About" },
+  { type: "external", href: "https://github.com/Mike-Lalonde", label: "GitHub" },
   { to: "/projects", label: "Projects" },
   { to: "/resume", label: "Resume" },
 ];
 
-export default function Nav() {
   return (
     <header className="header">
       <div className="container header-inner">

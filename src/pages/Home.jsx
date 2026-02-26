@@ -24,19 +24,46 @@ export default function Home() {
           </div>
         </div>
       </section>
+      <div className="card">
+      <div className="card-title">Welcome to My Technical Portfolio</div>
+
+        <p className="muted">
+          This portfolio is a work in progress and was initiated on <strong>February 18, 2026</strong>.
+          It is currently under active development and will continue to evolve over the next two weeks
+          as additional projects and documentation are integrated.
+        </p>
+
+        <p className="muted">
+          My résumé is current and fully up to date.
+        </p>
+
+        <p className="muted">
+          This site will represent curated samples from more than <strong>120 projects</strong> completed across
+          three technical programs. The goal is to showcase representative work that demonstrates both
+          breadth and depth of applied capability.
+        </p>
+
+        <p className="muted">
+          Please check back soon, as this portfolio will be fully updated and expanded within the next two weeks.
+        </p>
+
+        <div className="muted" style={{ marginTop: 10 }}>
+          — Mike Lalonde
+        </div>
+      </div>
 
       <section className="grid">
         <div className="card">
-          <div className="card-title">Featured</div>
-          <ul className="list">
+          {/* <div className="card-title">Featured</div> */}
+          {/* <ul className="list">
             <li>AI + ML coursework artifacts (cleaned, readable, recruiter-friendly)</li>
             <li>Embedded + IoT labs (sanitized summaries)</li>
             <li>Web apps and APIs (case studies + screenshots)</li>
             <li>Learning notes (short posts, real takeaways)</li>
-          </ul>
+          </ul> */}
+          <QRCodeCard url={siteUrl} />
         </div>
 
-        <QRCodeCard url={siteUrl} />
       </section>
     </div>
   );

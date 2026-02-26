@@ -72,4 +72,16 @@ export const projects = [
     links: { repo: "", demo: "", writeup: "" },
     media: { screenshots: [], embedUrl: "" },
   },
+  {
+  id: "web-placeholder",
+  category: "web",
+  title: "Web Projects (Coming Next)",
+  subtitle: "React + Vite portfolio work and web apps",
+  summary: "Placeholder entry while I migrate and polish my web development projects for reliable demos.",
+  status: "In progress",
+  skills: ["UI Layout", "Component Design", "Routing", "Responsive Design"],
+  tech: ["React", "Vite", "CSS"],
+  links: { repo: null, demo: null, writeup: null },
+  media: { screenshots: [], embedUrl: null }
+}
 ];
