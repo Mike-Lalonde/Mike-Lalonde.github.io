@@ -1,6 +1,6 @@
 // src/pages/Projects.jsx
 import { useMemo, useState, useEffect, useRef } from "react";
-import { projects, CATEGORY, CATEGORY_META } from "../content/projects/projectsData";
+import { projects, CATEGORY, CATEGORY_META } from "../content/projects/projectsData.js";
 
 function CategoryTabs({ value, onChange }) {
   const tabs = [CATEGORY.AI, CATEGORY.EMBEDDED, CATEGORY.WEB];

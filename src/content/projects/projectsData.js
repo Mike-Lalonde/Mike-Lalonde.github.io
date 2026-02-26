@@ -1,3 +1,16 @@
+export const CATEGORY = {
+  WEB: "web",
+  EMBEDDED: "embedded",
+  AI: "ai",
+};
+
+export const CATEGORY_META = {
+  [CATEGORY.WEB]: { label: "Web Development", accent: "web" },
+  [CATEGORY.EMBEDDED]: { label: "Embedded / IoT", accent: "embedded" },
+  [CATEGORY.AI]: { label: "AI Engineering", accent: "ai" },
+};
+
+
 export const projects = [
   {
     id: "python-algorithms-suite",
