@@ -15,11 +15,9 @@ body,
 #root {
   height: 100%;
 }
-
-/* Prevent page-level scrolling (panels handle their own scroll) */
 body {
-  margin: 0;
-  overflow: hidden;
+  font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+  color: #1f2937;
 }
 
 /* Guard against horizontal overflow */
@@ -89,4 +87,26 @@ iframe {
   height: 220px;
   border: none;
   border-radius: 12px;
+}
+.site-nav {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  flex-wrap: nowrap;      /* prevents wrapping */
+  white-space: nowrap;    /* keeps items single-line */
+}
+
+.site-nav a {
+  text-decoration: none;
+}
+
+@media (max-width: 900px) {
+  /* On small screens you will NEED a fallback, otherwise it WILL overflow */
+  .site-nav {
+    overflow-x: auto;
+    scrollbar-width: none;
+  }
+  .site-nav::-webkit-scrollbar {
+    display: none;
+  }
 }

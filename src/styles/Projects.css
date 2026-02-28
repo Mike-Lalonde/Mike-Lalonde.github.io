@@ -1,0 +1,292 @@
+/* =========================================================
+   5) PROJECTS (ALL PROJECT STYLES LIVE HERE)
+   - Page layout (no page scroll)
+   - Tabs
+   - List
+   - Details
+   - Preview (image/video in main slot + thumbs right)
+   - Actions centered under preview
+   - Lightbox
+   ========================================================= */
+
+/* ---------- Projects: Page (no page scroll) ---------- */
+/* =====================================
+   PROJECT PAGE LAYOUT — STABLE VERSION
+===================================== */
+
+.projects-page {
+  padding-bottom: 20px;
+}
+
+/* Vertical stack */
+.projects-page .proj-vertical {
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+}
+
+/* Viewport (details area) */
+.projects-page .proj-viewport {
+  overflow: visible; /* DO NOT force scroll here */
+}
+
+/* Project list sits below everything */
+.projects-page .proj-left {
+  max-height: 260px;
+  overflow: hidden;
+}
+
+.projects-page .proj-list {
+  overflow-y: auto;
+  overflow-x: hidden;
+  max-height: 190px;
+}
+/* ---------- Projects: Tabs ---------- */
+.proj-tabs {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 14px;
+  width: 100%;
+}
+
+.proj-tab {
+  width: 100%;
+  text-align: center;
+  padding: 10px 0;
+  border-radius: 999px;
+  border: 1px solid var(--line);
+  background: rgba(255, 255, 255, 0.65);
+  color: var(--text);
+  cursor: pointer;
+}
+.proj-tab:hover { border-color: rgba(31, 41, 55, 0.18); }
+
+.proj-tab.active {
+  border-color: rgba(183, 121, 47, 0.45);
+  background: var(--accent-soft);
+}
+
+.proj-tab.accent-web.active { border-color: rgba(43,108,176,0.45); background: var(--web-soft); }
+.proj-tab.accent-embedded.active { border-color: rgba(47,133,90,0.45); background: var(--embedded-soft); }
+.proj-tab.accent-ai.active { border-color: rgba(107,70,193,0.45); background: var(--ai-soft); }
+
+/* ---------- Projects: List ---------- */
+.projects-page .proj-left {
+  overflow: hidden;
+  height: 260px;
+  min-width: 0;
+}
+
+.projects-page .proj-list {
+  margin-top: 12px;
+  display: grid;
+  gap: 10px;
+  height: calc(260px - 70px);
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+.proj-item {
+  width: 100%;
+  text-align: left;
+  border-radius: 14px;
+  border: 1px solid var(--line);
+  background: rgba(255, 255, 255, 0.70);
+  padding: 12px;
+  cursor: pointer;
+}
+.proj-item:hover { border-color: rgba(31, 41, 55, 0.16); }
+.proj-item.active {
+  border-color: rgba(183, 121, 47, 0.45);
+  background: var(--accent-soft);
+}
+
+.proj-item-title { font-weight: 720; }
+.proj-item-sub { color: var(--muted); font-size: 0.92rem; margin-top: 3px; }
+
+/* ---------- Projects: Details ---------- */
+.proj-detail { border-left: 6px solid rgba(183, 121, 47, 0.35); }
+.proj-detail.accent-web { border-left-color: rgba(43,108,176,0.45); }
+.proj-detail.accent-embedded { border-left-color: rgba(47,133,90,0.45); }
+.proj-detail.accent-ai { border-left-color: rgba(107,70,193,0.45); }
+
+.proj-detail-head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.proj-detail-status {
+  color: var(--muted);
+  font-size: 0.92rem;
+  white-space: nowrap;
+}
+
+.proj-section { margin-top: 26px; }
+.proj-section-title { font-weight: 700; margin-bottom: 8px; }
+
+/* Separate text from preview visually */
+.proj-summary {
+  margin-bottom: 28px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+/* ---------- Projects: Preview (NO SCROLL) ---------- */
+/* Layout: Main preview left, thumbnails stacked right */
+/* =========================
+   PROJECT PREVIEW — ZERO SCROLL GUARANTEE
+   ========================= */
+
+/* Outer preview container */
+/* =====================================
+   PREVIEW — HARD LOCK (NO SCROLL EVER)
+===================================== */
+
+.proj-preview {
+  height: 320px;        /* Fixed height */
+  width: 100%;
+  overflow: hidden;     /* HARD LOCK */
+  display: grid;
+  grid-template-columns: 1fr 110px;
+  gap: 14px;
+  border-radius: 16px;
+  border: 1px dashed rgba(31, 41, 55, 0.20);
+  padding: 12px;
+  background: rgba(255, 255, 255, 0.55);
+  margin-top: 24px;
+}
+
+.preview-main {
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.shot-main {
+  height: 100%;
+  width: 100%;
+  border: none;
+  padding: 0;
+  background: transparent;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.shot-main-img,
+.preview-video {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+}
+
+.shot-strip {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  overflow: hidden; /* NO SCROLL */
+}
+
+.shot-thumb {
+  width: 100%;
+  height: 64px;
+  flex-shrink: 0;
+}
+
+.shot-thumb-img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+/* Thumbs */
+.shot-thumb {
+  width: 100%;
+  height: 64px;
+  border-radius: 10px;
+  border: 1px solid rgba(31, 41, 55, 0.14);
+  background: rgba(255, 255, 255, 0.75);
+  padding: 6px;
+  cursor: pointer;
+  flex: 0 0 auto;
+}
+
+.shot-thumb-img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+}
+
+.shot-thumb.active {
+  border-color: rgba(31, 111, 99, 0.55);
+  box-shadow: 0 6px 18px rgba(27, 43, 39, 0.12);
+}
+
+/* NOTE: If you have MANY thumbnails, they will simply not be visible.
+   This is the tradeoff for "NO SCROLL in preview area". */
+
+/* ---------- Projects: Actions centered under preview ---------- */
+.proj-actions-compact {
+  margin-top: 10px;
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  flex-wrap: nowrap;
+}
+
+.btn-compact {
+  padding: 6px 10px;
+  font-size: 0.85rem;
+  min-height: 34px;
+  width: 140px;
+}
+
+/* ---------- Projects: Lightbox ---------- */
+.lightbox {
+  position: fixed;
+  inset: 0;
+  z-index: 999;
+  background: rgba(0, 0, 0, 0.65);
+  display: grid;
+  place-items: center;
+  padding: 24px;
+}
+
+.lightbox-panel {
+  width: min(1100px, 96vw);
+  height: min(760px, 88vh);
+  background: rgba(255, 255, 255, 0.98);
+  border-radius: 18px;
+  box-shadow: 0 18px 60px rgba(0, 0, 0, 0.35);
+  position: relative;
+  padding: 14px;
+  display: grid;
+  place-items: center;
+}
+
+.lightbox-close {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  border: 1px solid rgba(31, 41, 55, 0.15);
+  background: rgba(255, 255, 255, 0.9);
+  border-radius: 10px;
+  padding: 6px 10px;
+  cursor: pointer;
+  font-weight: 800;
+}
+
+.lightbox-img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  border-radius: 14px;
+  background: #fff;
+}

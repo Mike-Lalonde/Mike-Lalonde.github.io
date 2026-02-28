@@ -1,0 +1,101 @@
+/* src/styles/quickglance.css */
+
+/* No scrolling anywhere while Quick Glance is mounted */
+body.no-scroll {
+  overflow: hidden;
+}
+
+/* Page wrapper: locked to viewport */
+.quick-glance {
+  height: 100dvh;         /* more reliable than 100vh on Windows + browsers */
+  overflow: hidden;
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 14px 28px;
+  box-sizing: border-box;
+}
+
+/* Tight header so content fits */
+.quick-glance-header {
+  margin-bottom: 10px;
+}
+
+.quick-glance-title {
+  margin: 0;
+  font-size: 18px;
+  font-weight: 650;
+  letter-spacing: -0.01em;
+}
+
+.quick-glance-subtitle {
+  margin: 4px 0 0 0;
+  font-size: 12px;
+  opacity: 0.75;
+}
+
+/* 4×4 grid */
+.quick-glance-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  column-gap: 60px;   /* wider horizontal spacing */
+  row-gap: 28px;      /* more vertical separation */
+  align-content: start;
+}
+
+/* Each category “card” — clean, subtle accent, not boxy */
+.quick-glance-section {
+  position: relative;
+  padding-left: 10px;
+  box-sizing: border-box;
+}
+
+/* Subtle mint accent line */
+.quick-glance-section::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 2px;
+  bottom: 2px;
+  width: 2px;
+  border-radius: 2px;
+  background: rgba(16, 185, 129, 0.30);
+}
+
+.quick-glance-heading {
+  margin: 0 0 6px 0;
+  font-size: 18px;
+  font-weight: 650;
+  letter-spacing: 0.02em;
+  opacity: 0.9;
+}
+
+.quick-glance-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.quick-glance-item {
+  font-size: 12.5px;
+  line-height: 1.25;  /* tight so we fit */
+  margin: 0;
+  opacity: 0.95;
+}
+.quick-glance-divider {
+  border: none;
+  height: 1px;
+  background-color: rgba(31, 41, 55, 0.15);
+  margin: 38px 0 42px 0;  /* more space top and bottom */
+}
+
+/* If your browser is zoomed or screen is small, tighten slightly */
+@media (max-width: 1200px) {
+  .quick-glance-grid {
+    column-gap: 38px;
+    row-gap: 12px;
+  }
+  .quick-glance-item {
+    font-size: 12px;
+    line-height: 1.2;
+  }
+}

@@ -1,10 +1,19 @@
+/* =========================================================
+   APP.CSS  (Clean + Organized)
+   - Global + Theme
+   - Shared UI (cards, buttons, chips)
+   ========================================================= */
+
+/* =========================
+   1) THEME / TOKENS
+========================= */
 :root {
   /* Mint Base */
-  --bg: #2c8c72;           
-  --bg2: #9df2b5;        
+  --bg: #2c8c72;
+  --bg2: #9df2b5;
   --card: #d7f5e2;
 
-  --text: #1b2b27;      
+  --text: #1b2b27;
   --muted: #4f6b63;
   --line: #cfe5dd;
   --shadow: 0 10px 28px rgba(27, 43, 39, 0.08);
@@ -14,30 +23,35 @@
   --accent-soft: rgba(31, 111, 99, 0.12);
 
   /* Category accents */
-  --web: #2f7fa3;            
-  --web-soft: rgba(47,127,163,0.12);
+  --web: #2f7fa3;
+  --web-soft: rgba(47, 127, 163, 0.12);
 
-  --embedded: #2e8b57;          
-  --embedded-soft: rgba(46,139,87,0.12);
+  --embedded: #2e8b57;
+  --embedded-soft: rgba(46, 139, 87, 0.12);
 
-  --ai: #3b6fb6;               
-  --ai-soft: rgba(59,111,182,0.12);
+  --ai: #3b6fb6;
+  --ai-soft: rgba(59, 111, 182, 0.12);
 
+  /* Radius */
   --r-card: 18px;
   --r-chip: 999px;
   --r-btn: 12px;
 
   /* Layout */
-  --nav-h: 72px; /* adjust ONLY if Projects still scrolls vertically*/
+  --nav-h: 64px;        /* must match header height */
+  --preview-h: 420px;   /* preview height (fixed) */
 }
 
+/* =========================
+   2) GLOBAL
+========================= */
+* { box-sizing: border-box; }
+
 body {
-  background: linear-gradient(
-    180deg,
-    var(--bg2) 0%,
-    var(--bg) 100%
-  );
+  margin: 0;
+  background: linear-gradient(180deg, var(--bg2) 0%, var(--bg) 100%);
   color: var(--text);
+  font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
 }
 
 .app {
@@ -51,53 +65,21 @@ body {
   margin: 0 auto;
 }
 
-.header {
-  position: sticky;
-  top: 0;
-  z-index: 10;
-  backdrop-filter: blur(8px);
-  background: rgba(232, 247, 243, 0.92);
-  border-bottom: 1px solid var(--line);
-}
-
-.header-inner {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 14px 0;
-  gap: 16px;
-}
-
-.brand-title { font-weight: 850; letter-spacing: 0.2px; }
-.brand-subtitle { color: var(--muted); font-size: 0.92rem; margin-top: 2px; }
-
-.nav { display: flex; flex-wrap: wrap; gap: 5px; }
-.nav-link {
-  padding: 4px 12px;
-  border-radius: 10px;
-  color: var(--muted);
-  border: 1px solid transparent;
-  transition: all 0.2s ease;
-}
-
-.nav-link:hover {
-  text-decoration: none;
-  background: rgba(31,111,99,0.08);
-  border-color: rgba(31,111,99,0.25);
-  color: var(--text);
-}
-
-.nav-link.active {
-  background: var(--accent);
-  border-color: var(--accent);
-  color: #ffffff;
-}
-
 main.container {
-  padding: 22px 0 40px;
+  padding: 10px 0 40px;
   flex: 1;
 }
 
+.muted { color: var(--muted); }
+
+.stack {
+  display: grid;
+  gap: 8px;
+  min-width: 0;
+}
+/* =========================
+   3) SHARED UI: CARDS / BUTTONS / CHIPS
+========================= */
 .card {
   background: var(--card);
   border: 1px solid var(--line);
@@ -108,16 +90,6 @@ main.container {
 
 .card-title { font-weight: 750; margin-bottom: 8px; }
 .card-subtitle { color: var(--muted); font-size: 0.92rem; margin-bottom: 12px; }
-
-.hero-title { margin: 0 0 8px; font-size: clamp(2rem, 4vw, 3rem); }
-.hero-subtitle { margin: 0 0 12px; color: var(--muted); font-size: 1.05rem; }
-
-.stack { display: grid; gap: 16px; min-width: 0; }
-.grid { display: grid; gap: 16px; grid-template-columns: repeat(2, minmax(0, 1fr)); }
-@media (max-width: 900px) { .grid { grid-template-columns: 1fr; } }
-
-.row { display: flex; align-items: center; gap: 10px; }
-.wrap { flex-wrap: wrap; }
 
 .btn {
   display: inline-flex;
@@ -130,286 +102,42 @@ main.container {
   background: var(--accent-soft);
   color: var(--text);
   cursor: pointer;
+  text-decoration: none;
 }
-.btn:hover { text-decoration: none; border-color: rgba(183, 121, 47, 0.60); }
-.btn.ghost {
-  background: transparent;
-  border-color: var(--line);
-  color: var(--text);
-}
+.btn:hover { border-color: rgba(183, 121, 47, 0.60); }
 .btn.disabled {
   opacity: 0.55;
   cursor: not-allowed;
   pointer-events: none;
 }
 
-.muted { color: var(--muted); }
-.small { font-size: 0.9rem; }
-
-.list { margin: 10px 0 0; padding-left: 18px; }
-.dot { opacity: 0.6; padding: 0 6px; }
-
-.footer {
-  border-top: 1px solid var(--line);
-  padding: 16px 0;
-  background: rgba(246, 241, 232, 0.75);
-}
-.footer-inner { display: flex; justify-content: space-between; gap: 12px; flex-wrap: wrap; }
-.footer-links { display: flex; align-items: center; gap: 8px; color: var(--muted); }
-
-/* QR */
-.qr-card { display: grid; gap: 10px; }
-.qr-img {
-  width: 120px;
-  height: 120px;
-  border-radius: 14px;
-  border: 1px solid var(--line);
-  background: #fff;
-  padding: 10px;
-}
-
-/* PDF */
-.pdf-wrap { width: 100%; height: min(78vh, 900px); }
-.pdf-frame {
-  width: 100%;
-  height: 100%;
-  border: 1px solid var(--line);
-  border-radius: 14px;
-  background: #fff;
-}
-
-/* ------------------------------ */
-/* Category accent helper classes */
-/* ------------------------------ */
-.accent-web { --cat: var(--web); --cat-soft: var(--web-soft); }
-.accent-embedded { --cat: var(--embedded); --cat-soft: var(--embedded-soft); }
-.accent-ai { --cat: var(--ai); --cat-soft: var(--ai-soft); }
-
-/* ------------------------------ */
-/* Projects Split View            */
-/* ------------------------------ */
-
-.proj-tabs {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
-}
-
-.proj-tab {
-  padding: 10px 12px;
-  border-radius: 999px;
-  border: 1px solid var(--line);
-  background: rgba(255, 255, 255, 0.65);
-  color: var(--text);
-  cursor: pointer;
-}
-.proj-tab:hover { border-color: rgba(31, 41, 55, 0.18); }
-
-.proj-tab.active {
-  border-color: rgba(183, 121, 47, 0.45);
-  background: var(--accent-soft);
-}
-
-/* Tab color hints */
-.proj-tab.accent-web.active { border-color: rgba(43,108,176,0.45); background: var(--web-soft); }
-.proj-tab.accent-embedded.active { border-color: rgba(47,133,90,0.45); background: var(--embedded-soft); }
-.proj-tab.accent-ai.active { border-color: rgba(107,70,193,0.45); background: var(--ai-soft); }
-
-.proj-split {
-  display: grid;
-  grid-template-columns: 340px 1fr;
-  gap: 16px;
-  align-items: start;
-  min-width: 0;
-}
-@media (max-width: 980px) {
-  .proj-split { grid-template-columns: 1fr; }
-}
-
-.proj-left {
-  padding-bottom: 10px;
-  min-width: 0;
-}
-
-.proj-list {
-  margin-top: 12px;
-  display: grid;
-  gap: 10px;
-  max-height: min(62vh, 720px);
-  overflow: auto;
-  padding-right: 4px;
-}
-
-.proj-item {
-  width: 100%;
-  text-align: left;
-  border-radius: 14px;
-  border: 1px solid var(--line);
-  background: rgba(255, 255, 255, 0.70);
-  padding: 12px;
-  cursor: pointer;
-}
-.proj-item:hover { border-color: rgba(31, 41, 55, 0.16); }
-.proj-item.active {
-  border-color: rgba(183, 121, 47, 0.45);
-  background: var(--accent-soft);
-}
-
-.proj-item-title { font-weight: 720; }
-.proj-item-sub { color: var(--muted); font-size: 0.92rem; margin-top: 3px; }
-
-.proj-right { display: grid; margin-top: 32px; min-width: 0; }
-
-.proj-detail { border-left: 6px  solid rgba(183, 121, 47, 0.35); }
-.proj-detail.accent-web { border-left-color: rgba(43,108,176,0.45); }
-.proj-detail.accent-embedded { border-left-color: rgba(47,133,90,0.45); }
-.proj-detail.accent-ai { border-left-color: rgba(107,70,193,0.45); }
-
-.proj-detail-head {
-  display: flex;
-  align-items: flex-start;
-  justify-content: space-between;
-  gap: 12px;
-}
-
-.proj-detail-status {
-  color: var(--muted);
-  font-size: 0.92rem;
-  white-space: nowrap;
-}
-
-.proj-section { margin-top: 14px; }
-.proj-section-title { font-weight: 700; margin-bottom: 8px; }
-
+/* Chips */
 .chips { display: flex; flex-wrap: wrap; gap: 8px; }
+.chips-compact { gap: 6px; }
 
 .chip {
   display: inline-flex;
   align-items: center;
-  padding: 6px 10px;
+  padding: 3px 7px;
   border-radius: var(--r-chip);
-  border: 1px solid rgba(31, 41, 55, 0.14);
+  border: 1px solid rgba(31, 41, 55, 0.12);
   background: rgba(255, 255, 255, 0.75);
-  font-size: 0.92rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  line-height: 1;
 }
-
 .chip.subtle {
   color: var(--muted);
   background: rgba(255, 255, 255, 0.55);
 }
 
+/* Category accent helpers */
+.accent-web { --cat: var(--web); --cat-soft: var(--web-soft); }
+.accent-embedded { --cat: var(--embedded); --cat-soft: var(--embedded-soft); }
+.accent-ai { --cat: var(--ai); --cat-soft: var(--ai-soft); }
+
 .chip.accent-web { border-color: rgba(43,108,176,0.25); background: var(--web-soft); }
 .chip.accent-embedded { border-color: rgba(47,133,90,0.25); background: var(--embedded-soft); }
 .chip.accent-ai { border-color: rgba(107,70,193,0.25); background: var(--ai-soft); }
 
-.proj-preview {
-  border: 1px dashed rgba(31, 41, 55, 0.20);
-  border-radius: 16px;
-  padding: 14px;
-  background: rgba(255, 255, 255, 0.55);
-  min-width: 0;
-}
 
-.proj-preview iframe {
-  width: 100%;
-  height: 420px;
-  border: 0;
-  border-radius: 14px;
-  background: #fff;
-}
-
-.proj-actions {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
-  margin-top: 14px;
-}
-
-/* ------------------------------ */
-/* Projects: Screenshot thumbnails */
-/* ------------------------------ */
-.proj-screenshot-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  gap: 16px;
-  margin-top: 12px;
-}
-
-.proj-screenshot {
-  display: block;
-  width: 100%;
-  height: 200px;
-  object-fit: contain;
-  background: #f6faf8;
-  border-radius: 12px;
-  border: 1px solid #d9e5dd;
-  padding: 8px;
-}
-
-/* ------------------------------ */
-/* Projects: NO page vertical scroll */
-/* Add class "projects-page" to Projects.jsx wrapper */
-/* ------------------------------ */
-.projects-page {
-  height: calc(100vh - var(--nav-h));
-  overflow: hidden;
-  min-width: 0;
-}
-
-.projects-page .proj-split {
-  height: 100%;
-  overflow: hidden;
-  min-width: 0;
-  align-items: stretch;
-}
-
-/* Make the left card a column so the list can fill remaining height */
-.projects-page .proj-left {
-  display: flex;
-  flex-direction: column;
-  height: 100%;
-  overflow: hidden;
-  min-width: 0;
-}
-
-/* List becomes the scroll area */
-.projects-page .proj-list {
-  flex: 1;
-  max-height: none;
-  overflow-y: auto;
-  overflow-x: hidden;
-}
-
-/* Right panel scrolls internally (details can be long) */
-.projects-page .proj-right {
-  height: 100%;
-  overflow-y: auto;
-  overflow-x: hidden;
-  min-width: 0;
-}
-
-/* Safety: never allow media to force horizontal overflow */
-.projects-page img,
-.projects-page video,
-.projects-page iframe {
-  max-width: 100%;
-}
-
-/* ===== Confined demo video box ===== */
-.proj-video {
-  display: block;
-  width: 100%;
-  max-width: 720px;      /* player width cap */
-  aspect-ratio: 16 / 9;  /* keeps it proportional */
-  height: auto;
-  margin: 12px auto 18px; /* center it */
-  border-radius: 14px;
-  border: 1px solid var(--line);
-  box-shadow: var(--shadow);
-  background: #000;      /* letterbox background */
-}
-
-/* If your browser ignores aspect-ratio on video, this ensures it never grows tall */
-.proj-preview .proj-video {
-  max-height: 360px;
-}

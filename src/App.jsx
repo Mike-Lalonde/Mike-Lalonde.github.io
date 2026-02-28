@@ -1,7 +1,6 @@
 import { Routes, Route, Navigate } from "react-router-dom";
 import Nav from "./components/Nav.jsx";
 import Footer from "./components/Footer.jsx";
-
 import Home from "./pages/Home.jsx";
 import Resume from "./pages/Resume.jsx";
 import Projects from "./pages/Projects.jsx";
@@ -9,7 +8,7 @@ import Learning from "./pages/Learning.jsx";
 import Notebooks from "./pages/Notebooks.jsx";
 import Assistant from "./pages/Assistant.jsx";
 import About from "./pages/About"; 
-
+import QuickGlance from "./pages/QuickGlance";
 
 export default function App() {
   return (
@@ -21,6 +20,7 @@ export default function App() {
           <Route path="/" element={<Home />} />
           <Route path="/about" element={<About />} />
           <Route path="/resume" element={<Resume />} />
+          <Route path="/quick-glance" element={<QuickGlance />} />
           <Route path="/projects" element={<Projects />} />
           <Route path="/learning" element={<Learning />} />
           <Route path="/notebooks" element={<Notebooks />} />
