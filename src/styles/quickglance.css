@@ -1,100 +1,134 @@
-/* src/styles/quickglance.css
-   Quick Glance page only.
-   Scoped under .quick-glance-page
-*/
+/* src/styles/quickglance.css */
 
-/* No scrolling anywhere while Quick Glance is mounted */
+/* Disable scrolling while page is mounted */
 body.no-scroll {
   overflow: hidden;
 }
 
-.quick-glance-page .quick-glance {
+.quick-glance-page {
   height: 100dvh;
   overflow: hidden;
+}
+
+/* Main container */
+.quick-glance {
+  height: 100%;
   max-width: 1280px;
   margin: 0 auto;
-  padding: 14px 28px;
+  padding: 16px 28px;
   box-sizing: border-box;
+
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
 }
 
-.quick-glance-page .quick-glance-header {
-  margin-bottom: 10px;
-}
-
-.quick-glance-page .quick-glance-title {
+/* Header */
+.quick-glance-title {
   margin: 0;
-  font-size: 18px;
-  font-weight: 650;
+  font-size: clamp(20px, 1.6vw, 26px);
+  font-weight: 700;
   letter-spacing: -0.01em;
 }
 
-.quick-glance-page .quick-glance-subtitle {
-  margin: 4px 0 0 0;
-  font-size: 12px;
+.quick-glance-description {
+  margin: 6px 0 0 0;
+  font-size: clamp(11px, 1vw, 14px);
+  line-height: 1.3;
   opacity: 0.75;
+
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
 }
 
-/* 4×4 grid */
-.quick-glance-page .quick-glance-grid {
-  display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
-  column-gap: 60px;
-  row-gap: 28px;
-  align-content: start;
-}
-
-.quick-glance-page .quick-glance-section {
-  position: relative;
-  padding-left: 10px;
-  box-sizing: border-box;
-}
-
-.quick-glance-page .quick-glance-section::before {
-  content: "";
-  position: absolute;
-  left: 0;
-  top: 2px;
-  bottom: 2px;
-  width: 2px;
-  border-radius: 2px;
-  background: rgba(16, 185, 129, 0.30);
-}
-
-.quick-glance-page .quick-glance-heading {
-  margin: 0 0 6px 0;
-  font-size: 18px;
-  font-weight: 650;
-  letter-spacing: 0.02em;
-  opacity: 0.9;
-}
-
-.quick-glance-page .quick-glance-list {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-}
-
-.quick-glance-page .quick-glance-item {
-  font-size: 12.5px;
-  line-height: 1.25;
-  margin: 0;
-  opacity: 0.95;
-}
-
-.quick-glance-page .quick-glance-divider {
+.quick-glance-divider {
   border: none;
   height: 1px;
   background-color: rgba(31, 41, 55, 0.15);
-  margin: 38px 0 42px 0;
+  margin: 0;
 }
 
-@media (max-width: 1200px) {
-  .quick-glance-page .quick-glance-grid {
-    column-gap: 38px;
-    row-gap: 12px;
+/* 4 Columns ALWAYS */
+.quick-glance-grid {
+  flex: 1 1 auto;
+  min-height: 0;
+  overflow: hidden;
+
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: clamp(10px, 1.4vw, 18px);
+  align-content: start;
+}
+
+/* Card styling */
+.quick-glance-card {
+  border: 1px solid rgba(31, 41, 55, 0.12);
+  border-radius: clamp(12px, 1.2vw, 18px);
+  padding: clamp(10px, 1.2vw, 14px);
+  box-sizing: border-box;
+  overflow: hidden;
+
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(6px);
+}
+
+/* Section Title */
+.quick-glance-heading {
+  margin: 0 0 8px 0;
+  font-size: clamp(20px, 1.1vw, 17px);
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  opacity: 0.9;
+
+  text-align: center;
+}
+
+.quick-glance-heading::before {
+  content: "";
+  width: 10px;
+  height: 10px;
+  border-radius: 999px;
+  background: rgba(16, 185, 129, 0.35);
+  flex: 0 0 auto;
+}
+
+/* Skills list */
+.quick-glance-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  font-size: 20px;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  column-gap: clamp(6px, 1vw, 12px);
+  row-gap: clamp(3px, 0.6vw, 6px);
+
+  justify-items: center;   /* centers items inside each grid cell */
+}
+
+.quick-glance-item {
+  font-size: clamp(11px, 1.05vw, 15px);
+  line-height: 1.35;
+  font-weight: 500;
+  opacity: 0.98;
+
+  text-align: center;
+}
+
+/* Small screens (still 4 columns, just tighter) */
+@media (max-width: 800px) {
+  .quick-glance {
+    padding: 12px 16px;
+    gap: 10px;
   }
-  .quick-glance-page .quick-glance-item {
-    font-size: 12px;
-    line-height: 1.2;
+
+  .quick-glance-description {
+    -webkit-line-clamp: 2;
+  }
+
+  .quick-glance-list {
+    grid-template-columns: 1fr;
   }
 }

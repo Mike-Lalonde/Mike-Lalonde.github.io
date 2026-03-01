@@ -22,7 +22,6 @@ const SECTIONS = [
 ];
 
 export default function QuickGlance() {
-  // Disable scrolling ONLY while on this page
   useEffect(() => {
     document.body.classList.add("no-scroll");
     return () => document.body.classList.remove("no-scroll");
@@ -30,29 +29,32 @@ export default function QuickGlance() {
 
   return (
     <main className="quick-glance-page">
+      <div className="quick-glance">
         <header className="quick-glance-header">
-        <h1 className="quick-glance-title">Quick Glance</h1>
-        <p className="quick-glance-description">
+          <h1 className="quick-glance-title">Quick Glance</h1>
+          <p className="quick-glance-description">
             This section provides a high-level overview of my technical capabilities for quick review.
-            Detailed implementations, applied projects, and architecture decisions can be explored in the Projects section. This list is not completed yet.  This portfolio is expected to be finished by March 20th 2026
-        </p>
+            Detailed implementations and applied architecture decisions can be explored in the Projects section.
+            Portfolio completion target: March 20th, 2026.
+          </p>
         </header>
 
-<hr className="quick-glance-divider" />
+        <hr className="quick-glance-divider" />
 
-      <div className="quick-glance-grid">
-        {SECTIONS.map((sec) => (
-          <section key={sec.title} className="quick-glance-section">
-            <h2 className="quick-glance-heading">{sec.title}</h2>
-            <ul className="quick-glance-list">
-              {sec.items.map((item) => (
-                <li key={item} className="quick-glance-item">
-                  {item}
-                </li>
-              ))}
-            </ul>
-          </section>
-        ))}
+        <div className="quick-glance-grid">
+          {SECTIONS.map((sec) => (
+            <section key={sec.title} className="quick-glance-card">
+              <h2 className="quick-glance-heading">{sec.title}</h2>
+              <ul className="quick-glance-list">
+                {sec.items.map((item) => (
+                  <li key={item} className="quick-glance-item">
+                    {item}
+                  </li>
+                ))}
+              </ul>
+            </section>
+          ))}
+        </div>
       </div>
     </main>
   );
