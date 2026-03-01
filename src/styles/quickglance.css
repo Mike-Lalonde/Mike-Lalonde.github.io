@@ -131,4 +131,41 @@ body.no-scroll {
   .quick-glance-list {
     grid-template-columns: 1fr;
   }
+  /* Phone: stack cards (1 column) and allow scrolling */
+@media (max-width: 600px) {
+  /* re-enable scroll on phones */
+  body.no-scroll {
+    overflow: auto;
+  }
+
+  .quick-glance-page {
+    height: auto;
+    min-height: 100dvh;
+    overflow: auto;
+  }
+
+  .quick-glance {
+    height: auto;
+  }
+
+  .quick-glance-grid {
+    overflow: visible;
+    grid-template-columns: 1fr;   /* stack cards */
+  }
+
+  /* make text comfortably readable */
+  .quick-glance-heading {
+    font-size: 18px;
+  }
+
+  .quick-glance-item {
+    font-size: 14px;
+    line-height: 1.4;
+  }
+
+  /* optional: keep list as 2 columns on phone if you like */
+  .quick-glance-list {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
 }
