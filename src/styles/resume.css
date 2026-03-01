@@ -101,11 +101,30 @@
 }
 
 /* Responsive: when screen is narrow, stack selectors below PDF */
-@media (max-width: 1050px) {
+@media (max-width: 768px) {
+
   .resume-layout {
-    grid-template-columns: 1fr;
+    grid-template-columns: 1fr;   /* stack */
   }
+
+  .resume-sidecol {
+    width: 100%;
+  }
+
+  .resume-pdfcol {
+    width: 100%;
+  }
+
+  .paper {
+    width: 100%;
+  }
+
   .resume-btn-row {
     flex-wrap: wrap;
   }
+
+  .resume-page .btn {
+    flex: 1 1 auto;
+  }
+
 }
