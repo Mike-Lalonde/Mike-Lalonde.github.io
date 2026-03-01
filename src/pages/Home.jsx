@@ -54,7 +54,7 @@ export default function Home() {
       </div>
 
       <section className="grid">
-        <div className="card">
+        {/* <div className="card"> */}
           {/* <div className="card-title">Featured</div> */}
           {/* <ul className="list">
             <li>AI + ML coursework artifacts (cleaned, readable, recruiter-friendly)</li>
@@ -62,8 +62,8 @@ export default function Home() {
             <li>Web apps and APIs (case studies + screenshots)</li>
             <li>Learning notes (short posts, real takeaways)</li>
           </ul> */}
-          <QRCodeCard url={siteUrl} />
-        </div>
+          {/* <QRCodeCard url={siteUrl} /> */}
+        {/* </div> */}
 
       </section>
     </div>

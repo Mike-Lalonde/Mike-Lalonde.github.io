@@ -7,7 +7,7 @@ function CategoryTabs({ value, onChange }) {
   const tabs = [CATEGORY.AI, CATEGORY.EMBEDDED, CATEGORY.WEB];
 
   return (
-    <div className="proj-tabs">
+    <div className="proj-tabs" role="tablist" aria-label="Project categories">
       {tabs.map((k) => {
         const meta = CATEGORY_META[k];
         const active = value === k;
@@ -17,6 +17,8 @@ function CategoryTabs({ value, onChange }) {
             className={active ? `proj-tab active accent-${meta.accent}` : `proj-tab accent-${meta.accent}`}
             onClick={() => onChange(k)}
             type="button"
+            role="tab"
+            aria-selected={active}
           >
             {meta.label}
           </button>
@@ -51,10 +53,9 @@ function Chip({ children, accent }) {
   return <span className={`chip accent-${accent}`}>{children}</span>;
 }
 
-function ProjectDetails({ project }) {
+function ProjectDetails({ project, category, setCategory }) {
   const accent = CATEGORY_META[project.category]?.accent || "web";
   const [showDemo, setShowDemo] = useState(false);
-  const videoRef = useRef(null);
   const shots = project.media?.screenshots || [];
   const [activeShotIdx, setActiveShotIdx] = useState(0);
   const [lightboxOpen, setLightboxOpen] = useState(false);
@@ -65,158 +66,129 @@ function ProjectDetails({ project }) {
     setShowDemo(false);
   }, [project.id]);
 
-return (
-  <>
-    {/* HEADER + SUMMARY (NOT IN A CARD) */}
-    <div className="proj-header-block">
-      <div className="proj-detail-head">
-        <div>
-          <div className="card-title">{project.title}</div>
-          <div className="card-subtitle">
-            {project.subtitle || project.status}
+  return (
+    <>
+      {/* TITLE / STATUS */}
+      <div className="proj-header-block">
+        <div className="proj-detail-head">
+          <div>
+            <div className="card-title">{project.title}</div>
+            <div className="card-subtitle">{project.subtitle || project.status}</div>
           </div>
+          <div className="proj-detail-status">{project.status}</div>
         </div>
-        <div className="proj-detail-status">{project.status}</div>
       </div>
 
-      <p className="muted proj-summary">{project.summary}</p>
-    </div>
+      {/* CATEGORY TABS centered ABOVE preview */}
+      <div className="proj-tabs-wrap">
+        <CategoryTabs value={category} onChange={setCategory} />
+      </div>
 
-    {/* PREVIEW CARD ONLY */}
-    <div className="card">
-      <div className="proj-section-title">Preview</div>
+      {/* PREVIEW CARD */}
+      <div className="card proj-preview-card">
+        <div className="proj-section-title">Preview</div>
 
-      <div className="proj-preview">
-        <div className="preview-main">
-          {showDemo && project.links?.demo ? (
-            <video controls className="preview-video">
-              <source src={project.links.demo} type="video/mp4" />
-            </video>
-          ) : shots.length > 0 ? (
-            <button
-              type="button"
-              className="shot-main"
-              onClick={() => setLightboxOpen(true)}
-            >
-              <img
-                src={shots[activeShotIdx]}
-                alt=""
-                className="shot-main-img"
-              />
-            </button>
-          ) : (
-            <div className="muted">Preview coming soon.</div>
+        <div className="proj-preview">
+          <div className="preview-main">
+            {showDemo && project.links?.demo ? (
+              <video controls className="preview-video">
+                <source src={project.links.demo} type="video/mp4" />
+              </video>
+            ) : shots.length > 0 ? (
+              <button type="button" className="shot-main" onClick={() => setLightboxOpen(true)}>
+                <img src={shots[activeShotIdx]} alt="" className="shot-main-img" />
+              </button>
+            ) : (
+              <div className="muted">Preview coming soon.</div>
+            )}
+          </div>
+
+          {shots.length > 1 && (
+            <div className="shot-strip" aria-label="Preview thumbnails">
+              {shots.map((src, idx) => (
+                <button
+                  key={idx}
+                  type="button"
+                  className={idx === activeShotIdx ? "shot-thumb active" : "shot-thumb"}
+                  onClick={() => {
+                    setActiveShotIdx(idx);
+                    setShowDemo(false);
+                  }}
+                >
+                  <img src={src} className="shot-thumb-img" alt="" />
+                </button>
+              ))}
+            </div>
           )}
         </div>
 
-        {shots.length > 1 && (
-          <div className="shot-strip">
-            {shots.map((src, idx) => (
-              <button
-                key={idx}
-                className={
-                  idx === activeShotIdx
-                    ? "shot-thumb active"
-                    : "shot-thumb"
-                }
-                onClick={() => {
-                  setActiveShotIdx(idx);
-                  setShowDemo(false);
-                }}
-              >
-                <img src={src} className="shot-thumb-img" alt="" />
-              </button>
-            ))}
-          </div>
-        )}
-      </div>
+        <div className="proj-actions proj-actions-compact">
+          {project.links?.repo ? (
+            <a className="btn btn-compact" href={project.links.repo} target="_blank" rel="noreferrer">
+              Repo
+            </a>
+          ) : (
+            <span className="btn btn-compact disabled">Repo</span>
+          )}
 
-      <div className="proj-actions proj-actions-compact">
-        {project.links?.repo ? (
-          <a
-            className="btn btn-compact"
-            href={project.links.repo}
-            target="_blank"
-            rel="noreferrer"
-          >
-            Repo
-          </a>
-        ) : (
-          <span className="btn btn-compact disabled">Repo</span>
-        )}
+          {project.links?.demo ? (
+            <button className="btn btn-compact" type="button" onClick={() => setShowDemo((p) => !p)}>
+              {showDemo ? "Hide Demo" : "Live Demo"}
+            </button>
+          ) : (
+            <span className="btn btn-compact disabled">Live Demo</span>
+          )}
 
-        {project.links?.demo ? (
-          <button
-            className="btn btn-compact"
-            type="button"
-            onClick={() => setShowDemo((prev) => !prev)}
-          >
-            {showDemo ? "Hide Demo" : "Live Demo"}
-          </button>
-        ) : (
-          <span className="btn btn-compact disabled">Live Demo</span>
-        )}
-
-        {project.links?.writeup ? (
-          <a
-            className="btn btn-compact"
-            href={project.links.writeup}
-            target="_blank"
-            rel="noreferrer"
-          >
-            Case Study
-          </a>
-        ) : (
-          <span className="btn btn-compact disabled">Case Study</span>
-        )}
-      </div>
-    </div>
-
-    {/* SKILLS */}
-    <div className="proj-section">
-      <div className="proj-section-title">Skills / Knowledge</div>
-      <div className="chips chips-compact">
-        {(project.skills || []).map((s) => (
-          <Chip key={s} accent={accent}>
-            {s}
-          </Chip>
-        ))}
-      </div>
-    </div>
-
-    {/* TECH */}
-    <div className="proj-section">
-      <div className="proj-section-title">Tech</div>
-      <div className="chips chips-compact">
-        {(project.tech || []).map((t) => (
-          <span key={t} className="chip subtle">
-            {t}
-          </span>
-        ))}
-      </div>
-    </div>
-
-    {/* LIGHTBOX */}
-    {lightboxOpen && shots.length > 0 && (
-      <div className="lightbox" onClick={() => setLightboxOpen(false)}>
-        <div className="lightbox-panel" onClick={(e) => e.stopPropagation()}>
-          <button
-            type="button"
-            className="lightbox-close"
-            onClick={() => setLightboxOpen(false)}
-          >
-            ✕
-          </button>
-          <img
-            src={shots[activeShotIdx]}
-            alt=""
-            className="lightbox-img"
-          />
+          {project.links?.writeup ? (
+            <a className="btn btn-compact" href={project.links.writeup} target="_blank" rel="noreferrer">
+              Case Study
+            </a>
+          ) : (
+            <span className="btn btn-compact disabled">Case Study</span>
+          )}
         </div>
       </div>
-    )}
-  </>
-);
+
+      {/* DESCRIPTION BELOW preview */}
+      <p className="muted proj-summary proj-summary-below">{project.summary}</p>
+
+      {/* SKILLS */}
+      <div className="proj-section">
+        <div className="proj-section-title">Skills / Knowledge</div>
+        <div className="chips chips-compact">
+          {(project.skills || []).map((s) => (
+            <Chip key={s} accent={accent}>
+              {s}
+            </Chip>
+          ))}
+        </div>
+      </div>
+
+      {/* TECH */}
+      <div className="proj-section">
+        <div className="proj-section-title">Tech</div>
+        <div className="chips chips-compact">
+          {(project.tech || []).map((t) => (
+            <span key={t} className="chip subtle">
+              {t}
+            </span>
+          ))}
+        </div>
+      </div>
+
+      {/* LIGHTBOX */}
+      {lightboxOpen && shots.length > 0 && (
+        <div className="lightbox" onClick={() => setLightboxOpen(false)}>
+          <div className="lightbox-panel" onClick={(e) => e.stopPropagation()}>
+            <button type="button" className="lightbox-close" onClick={() => setLightboxOpen(false)}>
+              ✕
+            </button>
+            <img src={shots[activeShotIdx]} alt="" className="lightbox-img" />
+          </div>
+        </div>
+      )}
+    </>
+  );
 }
 
 export default function Projects() {
@@ -234,23 +206,23 @@ export default function Projects() {
 
   return (
     <div className="stack projects-page">
-      <h2 style={{ margin: "20px 20px 0px", lineHeight: 1.05, color: " #9F1D35"}}>Projects</h2>
-      <div className="card">
-      <p className="projects-description">
-        Select a project to view the skills/knowledge used and supporting evidence without leaving the page.
-     </p> 
+      <h2 style={{ margin: "20px 0px 0px 0px", lineHeight: 1.05, color: "#9F1D35", marginLeft: "20px"}}>Projects</h2>
+      <div className="card"> 
+        <p>Select a project to view the skills/knowledge used and supporting evidence without leaving the page.</p>
       </div>
-      <CategoryTabs value={category} onChange={setCategory} />
-
       <div className="proj-vertical">
         <div className="proj-viewport">
-          {selected ? <ProjectDetails project={selected} /> : <div className="card">No project selected.</div>}
+          {selected ? (
+            <ProjectDetails project={selected} category={category} setCategory={setCategory} />
+          ) : (
+            <div className="card">No project selected.</div>
+          )}
         </div>
 
         <div className="card proj-left">
           <div className="card-title">{CATEGORY_META[category].label}</div>
           <div className="card-subtitle">Click a project to view details</div>
-         <ProjectList items={filtered.slice(0, 12)} selectedId={selected?.id} onSelect={setSelectedId} />
+          <ProjectList items={filtered.slice(0, 12)} selectedId={selected?.id} onSelect={setSelectedId} />
         </div>
       </div>
     </div>

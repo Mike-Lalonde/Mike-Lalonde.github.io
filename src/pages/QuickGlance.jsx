@@ -31,7 +31,7 @@ export default function QuickGlance() {
     <main className="quick-glance-page">
       <div className="quick-glance">
         <header className="quick-glance-header">
-          <h2 style={{ margin: "20px 20px 0px", lineHeight: 1.05, color: "#9F1D35" }}>Quick Glance</h2>
+          <h2 style={{ margin: "10px 10px 10px 0px", lineHeight: 1.05, color: "#9F1D35" }}>Quick Glance</h2>
           <div className="card">
             <p className="quick-glance-description">
               This section provides a high-level overview of my technical capabilities for quick review.

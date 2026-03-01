@@ -12,7 +12,7 @@
 }
 
 .resume-page-title {
-  margin: 20px 20px 0px;
+  margin: 20px 10px 0px;
   line-height: 1.05;
   color:#9F1D35
 }
@@ -76,7 +76,7 @@
   padding: 12px;
   border-radius: 14px;
   border: 1px solid var(--line);
-  background: rgba(156, 230, 142, 0.65);
+  background: rgba(253, 30, 9, 0.15);
 }
 
 .resume-tile-title {
@@ -92,7 +92,7 @@
 }
 
 .resume-page .btn {
-  background-color: rgb(142, 147, 143);
+  background-color: rgb(173, 244, 147);
   padding: 7px 12px;
   border-radius: 10px;
   font-size: 0.9rem;

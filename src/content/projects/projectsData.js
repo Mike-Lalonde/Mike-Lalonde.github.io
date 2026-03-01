@@ -16,13 +16,13 @@ export const projects = [
     id: "python-algorithms-suite",
     category: CATEGORY.AI,
     title: "Python Algorithms & Interactive System",
-    subtitle: "CLI Games, String Processing & Text Analytics",
+    subtitle: "CLI Games, String Manipulation & Text Analytics",
     summary:
-      "A multi-part Python project featuring algorithmic string manipulation, a 2D grid-based game engine (Tic-Tac-Toe), and a text analytics pipeline that generates dynamic HTML reports with hidden message extraction.",
+      "Description : This project was a multi-part Python project featuring algorithmic string manipulation, a 2D grid-based game engine (Tic-Tac-Toe), and a text analytics pipeline that generates dynamic HTML reports with hidden message extraction. This was a fun project that I added a pirate theme too to make it a bit more entertaining",
     status: "Complete",
     skills: [
       "Algorithm Design",
-      "String Processing",
+      "String Manipulation",
       "2D Data Structures",
       "State Management",
       "File I/O",

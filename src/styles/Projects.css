@@ -6,8 +6,8 @@
   padding-bottom: 30px;
 }
 
-.projects-description{
-  margin-left:20px;
+.projects-description {
+  margin-left: 20px;
 }
 
 /* Layout containers */
@@ -18,29 +18,37 @@
 }
 
 .projects-page .proj-viewport {
-  width:100%;
+  width: 100%;
   max-width: 80%;
-align-self: center;
+  align-self: center;
   overflow: visible;
   min-width: 0;
 }
 
+/* ===== NEW: Tabs centered above Preview + bigger gaps ===== */
+.projects-page .proj-tabs-wrap {
+  display: flex;
+  justify-content: center;
+  margin: 10px 0 14px;
+}
+
 /* Tabs */
 .projects-page .proj-tabs {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 14px;
-  width: 100%;
+  display: flex;               /* was grid */
+  justify-content: center;
+  gap: 18px;                   /* bigger gap between buttons */
+  width: auto;                 /* stop stretching full width */
+  flex-wrap: nowrap;
 }
 
 .projects-page .proj-tab {
-  width: 100%;
+  min-width: 150px;
   text-align: center;
   padding: 10px 0;
   border-radius: 999px;
   background: rgba(87, 242, 92, 0.12);   /* soft green */
   border: 1px solid rgba(24, 240, 20, 0.35);
-  color: #09190f;    
+  color: #09190f;
   cursor: pointer;
   font-weight: 650;
 }
@@ -86,6 +94,11 @@ align-self: center;
 .projects-page .proj-summary {
   margin: 10px 0 18px;
   line-height: 1.35;
+}
+
+/* NEW: when summary is moved below preview */
+.projects-page .proj-summary-below {
+  margin-top: 14px;
 }
 
 .projects-page .proj-section {
@@ -220,6 +233,16 @@ align-self: center;
   .projects-page .proj-grid {
     grid-template-columns: 1fr;
   }
+
+  /* Tabs wrap nicely on small screens */
+  .projects-page .proj-tabs {
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+
+  .projects-page .proj-tab {
+    min-width: 140px;
+  }
 }
 
 .projects-page .proj-tile {
@@ -314,11 +337,15 @@ align-self: center;
 
   /* Tabs: stack nicely */
   .projects-page .proj-tabs {
-    grid-template-columns: 1fr;
+    flex-direction: column;
+    width: 100%;
+    align-items: stretch;
     gap: 10px;
   }
 
   .projects-page .proj-tab {
+    width: 100%;
+    min-width: 0;
     padding: 10px 0;
     font-size: 0.95rem;
   }
@@ -343,13 +370,13 @@ align-self: center;
   .projects-page .proj-preview {
     grid-template-columns: 1fr;
     grid-template-rows: 1fr auto;
-    height: auto;            /* stop forcing desktop preview height */
+    height: auto; /* stop forcing desktop preview height */
     gap: 10px;
     padding: 10px;
   }
 
   .projects-page .preview-main {
-    min-height: 220px;       /* keeps it usable on mobile */
+    min-height: 220px;
   }
 
   /* Thumbnails: horizontal strip */
@@ -380,7 +407,7 @@ align-self: center;
     width: 100%;
   }
 
-  /* Bottom grid: already goes to 1 col at 640, but tighten spacing */
+  /* Bottom grid: tighten spacing */
   .projects-page .proj-grid {
     gap: 10px;
     margin-top: 14px;
