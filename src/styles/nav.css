@@ -1,6 +1,7 @@
-/* =========================
-   3) HEADER / BRAND / NAV
-========================= */
+/* src/styles/nav.css
+   Header + brand + navigation only.
+*/
+
 .header {
   position: sticky;
   top: 0;
@@ -23,6 +24,7 @@
   min-width: 0;
   width: 100%;
 }
+
 .brand {
   min-width: 0;
   display: flex;
@@ -54,7 +56,6 @@
   text-overflow: ellipsis;
 }
 
-/* Nav: always right, one line */
 .nav {
   display: flex;
   align-items: center;

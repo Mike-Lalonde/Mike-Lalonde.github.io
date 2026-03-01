@@ -1,13 +1,15 @@
-/* src/styles/quickglance.css */
+/* src/styles/quickglance.css
+   Quick Glance page only.
+   Scoped under .quick-glance-page
+*/
 
 /* No scrolling anywhere while Quick Glance is mounted */
 body.no-scroll {
   overflow: hidden;
 }
 
-/* Page wrapper: locked to viewport */
-.quick-glance {
-  height: 100dvh;         /* more reliable than 100vh on Windows + browsers */
+.quick-glance-page .quick-glance {
+  height: 100dvh;
   overflow: hidden;
   max-width: 1280px;
   margin: 0 auto;
@@ -15,42 +17,39 @@ body.no-scroll {
   box-sizing: border-box;
 }
 
-/* Tight header so content fits */
-.quick-glance-header {
+.quick-glance-page .quick-glance-header {
   margin-bottom: 10px;
 }
 
-.quick-glance-title {
+.quick-glance-page .quick-glance-title {
   margin: 0;
   font-size: 18px;
   font-weight: 650;
   letter-spacing: -0.01em;
 }
 
-.quick-glance-subtitle {
+.quick-glance-page .quick-glance-subtitle {
   margin: 4px 0 0 0;
   font-size: 12px;
   opacity: 0.75;
 }
 
 /* 4×4 grid */
-.quick-glance-grid {
+.quick-glance-page .quick-glance-grid {
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
-  column-gap: 60px;   /* wider horizontal spacing */
-  row-gap: 28px;      /* more vertical separation */
+  column-gap: 60px;
+  row-gap: 28px;
   align-content: start;
 }
 
-/* Each category “card” — clean, subtle accent, not boxy */
-.quick-glance-section {
+.quick-glance-page .quick-glance-section {
   position: relative;
   padding-left: 10px;
   box-sizing: border-box;
 }
 
-/* Subtle mint accent line */
-.quick-glance-section::before {
+.quick-glance-page .quick-glance-section::before {
   content: "";
   position: absolute;
   left: 0;
@@ -61,7 +60,7 @@ body.no-scroll {
   background: rgba(16, 185, 129, 0.30);
 }
 
-.quick-glance-heading {
+.quick-glance-page .quick-glance-heading {
   margin: 0 0 6px 0;
   font-size: 18px;
   font-weight: 650;
@@ -69,32 +68,32 @@ body.no-scroll {
   opacity: 0.9;
 }
 
-.quick-glance-list {
+.quick-glance-page .quick-glance-list {
   list-style: none;
   padding: 0;
   margin: 0;
 }
 
-.quick-glance-item {
+.quick-glance-page .quick-glance-item {
   font-size: 12.5px;
-  line-height: 1.25;  /* tight so we fit */
+  line-height: 1.25;
   margin: 0;
   opacity: 0.95;
 }
-.quick-glance-divider {
+
+.quick-glance-page .quick-glance-divider {
   border: none;
   height: 1px;
   background-color: rgba(31, 41, 55, 0.15);
-  margin: 38px 0 42px 0;  /* more space top and bottom */
+  margin: 38px 0 42px 0;
 }
 
-/* If your browser is zoomed or screen is small, tighten slightly */
 @media (max-width: 1200px) {
-  .quick-glance-grid {
+  .quick-glance-page .quick-glance-grid {
     column-gap: 38px;
     row-gap: 12px;
   }
-  .quick-glance-item {
+  .quick-glance-page .quick-glance-item {
     font-size: 12px;
     line-height: 1.2;
   }

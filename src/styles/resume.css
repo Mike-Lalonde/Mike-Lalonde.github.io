@@ -1,0 +1,111 @@
+/* src/styles/resume.css
+   Resume page: PDF left, selector stack right (same card).
+   Responsive: stacks on small screens.
+*/
+
+.resume-page {
+  padding-bottom: 14px;
+}
+
+/* Reduce wasted space from the H2 without shrinking font */
+.resume-page-title {
+  margin: 6px 0 10px;     /* tighten top/bottom space */
+  line-height: 1.05;
+}
+
+/* Big card that holds BOTH pdf + selectors */
+.resume-preview-card {
+  padding: 18px;
+}
+
+/* 2-column layout inside the card */
+.resume-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 350px; /* left grows, right fixed */
+  gap: 14px;                                   /* space between pdf and selectors */
+  align-items: start;
+  margin-top: 10px;
+}
+
+/* LEFT column wrapper */
+.resume-pdfcol {
+  min-width: 0;
+}
+
+/* Paper area: DO NOT center — top-left keeps it visually closer */
+.paper {
+  display: grid;
+  place-items: start;    /* key: prevents “big empty space” look */
+  overflow: hidden;
+  padding: 0;
+}
+
+/* Keep react-pdf page looking like paper */
+.paper .react-pdf__Page {
+  background: #fff;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 14px 40px rgba(0, 0, 0, 0.18);
+}
+
+/* RIGHT selector column */
+.resume-sidecol {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  justify-self: start;   /* hug left edge of its column */
+}
+
+.resume-side-title {
+  font-weight: 750;
+  margin: 0 0 4px 0;
+}
+
+/* Stacked tiles */
+.resume-sidegrid {
+  display: grid;
+  gap: 12px;
+}
+
+/* Tile styling (compact, not huge cards) */
+.resume-tile {
+  padding: 12px;
+  border-radius: 14px;
+  border: 1px solid var(--line);
+  background: rgba(255, 255, 255, 0.65);
+}
+
+.resume-tile-title {
+  font-weight: 750;
+  line-height: 1.15;
+  margin-bottom: 10px;
+}
+
+/* Buttons row inside each tile */
+.resume-btn-row {
+  display: flex;
+  gap: 10px;
+  flex-wrap: nowrap;
+}
+
+/* Slightly smaller buttons on resume page */
+.resume-page .btn {
+  padding: 7px 12px;
+  border-radius: 10px;
+  font-size: 0.9rem;
+}
+
+/* Help text */
+.resume-help {
+  margin-top: 2px;
+}
+
+/* Responsive: when screen is narrow, stack selectors below PDF */
+@media (max-width: 1050px) {
+  .resume-layout {
+    grid-template-columns: 1fr;
+  }
+  .resume-btn-row {
+    flex-wrap: wrap;
+  }
+}

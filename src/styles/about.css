@@ -1,0 +1,19 @@
+/* src/styles/about.css
+   About page only.
+   Scoped under .about-page
+*/
+
+.about-page .about-card {
+  display: grid;
+  gap: 12px;
+}
+
+.about-page .about-title {
+  margin: 0;
+  font-weight: 850;
+}
+
+.about-page .about-text {
+  margin: 0;
+  line-height: 1.45;
+}

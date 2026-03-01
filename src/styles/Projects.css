@@ -1,55 +1,32 @@
-/* =========================================================
-   5) PROJECTS (ALL PROJECT STYLES LIVE HERE)
-   - Page layout (no page scroll)
-   - Tabs
-   - List
-   - Details
-   - Preview (image/video in main slot + thumbs right)
-   - Actions centered under preview
-   - Lightbox
-   ========================================================= */
-
-/* ---------- Projects: Page (no page scroll) ---------- */
-/* =====================================
-   PROJECT PAGE LAYOUT — STABLE VERSION
-===================================== */
+/* src/styles/projects.css
+   Projects page only. (Scoped under .projects-page)
+*/
 
 .projects-page {
-  padding-bottom: 20px;
+  padding-bottom: 30px;
 }
 
-/* Vertical stack */
+/* Layout containers */
 .projects-page .proj-vertical {
   display: flex;
   flex-direction: column;
-  gap: 28px;
+  gap: 32px;
 }
 
-/* Viewport (details area) */
 .projects-page .proj-viewport {
-  overflow: visible; /* DO NOT force scroll here */
+  overflow: visible;
+  min-width: 0;
 }
 
-/* Project list sits below everything */
-.projects-page .proj-left {
-  max-height: 260px;
-  overflow: hidden;
-}
-
-.projects-page .proj-list {
-  overflow-y: auto;
-  overflow-x: hidden;
-  max-height: 190px;
-}
-/* ---------- Projects: Tabs ---------- */
-.proj-tabs {
+/* Tabs */
+.projects-page .proj-tabs {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 14px;
   width: 100%;
 }
 
-.proj-tab {
+.projects-page .proj-tab {
   width: 100%;
   text-align: center;
   padding: 10px 0;
@@ -58,107 +35,75 @@
   background: rgba(255, 255, 255, 0.65);
   color: var(--text);
   cursor: pointer;
+  font-weight: 650;
 }
-.proj-tab:hover { border-color: rgba(31, 41, 55, 0.18); }
 
-.proj-tab.active {
+.projects-page .proj-tab:hover {
+  border-color: rgba(31, 41, 55, 0.18);
+}
+
+.projects-page .proj-tab.active {
   border-color: rgba(183, 121, 47, 0.45);
   background: var(--accent-soft);
 }
 
-.proj-tab.accent-web.active { border-color: rgba(43,108,176,0.45); background: var(--web-soft); }
-.proj-tab.accent-embedded.active { border-color: rgba(47,133,90,0.45); background: var(--embedded-soft); }
-.proj-tab.accent-ai.active { border-color: rgba(107,70,193,0.45); background: var(--ai-soft); }
-
-/* ---------- Projects: List ---------- */
-.projects-page .proj-left {
-  overflow: hidden;
-  height: 260px;
-  min-width: 0;
+/* Accent active tab */
+.projects-page .proj-tab.accent-web.active {
+  border-color: rgba(43, 108, 176, 0.45);
+  background: var(--web-soft);
+}
+.projects-page .proj-tab.accent-embedded.active {
+  border-color: rgba(47, 133, 90, 0.45);
+  background: var(--embedded-soft);
+}
+.projects-page .proj-tab.accent-ai.active {
+  border-color: rgba(107, 70, 193, 0.45);
+  background: var(--ai-soft);
 }
 
-.projects-page .proj-list {
-  margin-top: 12px;
-  display: grid;
-  gap: 10px;
-  height: calc(260px - 70px);
-  overflow-y: auto;
-  overflow-x: hidden;
-}
-
-.proj-item {
-  width: 100%;
-  text-align: left;
-  border-radius: 14px;
-  border: 1px solid var(--line);
-  background: rgba(255, 255, 255, 0.70);
-  padding: 12px;
-  cursor: pointer;
-}
-.proj-item:hover { border-color: rgba(31, 41, 55, 0.16); }
-.proj-item.active {
-  border-color: rgba(183, 121, 47, 0.45);
-  background: var(--accent-soft);
-}
-
-.proj-item-title { font-weight: 720; }
-.proj-item-sub { color: var(--muted); font-size: 0.92rem; margin-top: 3px; }
-
-/* ---------- Projects: Details ---------- */
-.proj-detail { border-left: 6px solid rgba(183, 121, 47, 0.35); }
-.proj-detail.accent-web { border-left-color: rgba(43,108,176,0.45); }
-.proj-detail.accent-embedded { border-left-color: rgba(47,133,90,0.45); }
-.proj-detail.accent-ai { border-left-color: rgba(107,70,193,0.45); }
-
-.proj-detail-head {
+/* Detail header / summary */
+.projects-page .proj-detail-head {
   display: flex;
   align-items: flex-start;
   justify-content: space-between;
   gap: 12px;
 }
 
-.proj-detail-status {
+.projects-page .proj-detail-status {
   color: var(--muted);
   font-size: 0.92rem;
   white-space: nowrap;
 }
 
-.proj-section { margin-top: 26px; }
-.proj-section-title { font-weight: 700; margin-bottom: 8px; }
-
-/* Separate text from preview visually */
-.proj-summary {
-  margin-bottom: 28px;
-  padding-bottom: 16px;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+.projects-page .proj-summary {
+  margin: 10px 0 18px;
+  line-height: 1.35;
 }
 
-/* ---------- Projects: Preview (NO SCROLL) ---------- */
-/* Layout: Main preview left, thumbnails stacked right */
-/* =========================
-   PROJECT PREVIEW — ZERO SCROLL GUARANTEE
-   ========================= */
+.projects-page .proj-section {
+  margin-top: 18px;
+}
 
-/* Outer preview container */
-/* =====================================
-   PREVIEW — HARD LOCK (NO SCROLL EVER)
-===================================== */
+.projects-page .proj-section-title {
+  font-weight: 750;
+  margin-bottom: 10px;
+}
 
-.proj-preview {
-  height: 320px;        /* Fixed height */
+/* Preview (static) */
+.projects-page .proj-preview {
+  height: var(--preview-h);
   width: 100%;
-  overflow: hidden;     /* HARD LOCK */
   display: grid;
   grid-template-columns: 1fr 110px;
   gap: 14px;
+  overflow: hidden;
   border-radius: 16px;
   border: 1px dashed rgba(31, 41, 55, 0.20);
   padding: 12px;
   background: rgba(255, 255, 255, 0.55);
-  margin-top: 24px;
 }
 
-.preview-main {
+.projects-page .preview-main {
   height: 100%;
   width: 100%;
   overflow: hidden;
@@ -167,7 +112,7 @@
   justify-content: center;
 }
 
-.shot-main {
+.projects-page .shot-main {
   height: 100%;
   width: 100%;
   border: none;
@@ -177,36 +122,36 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  cursor: zoom-in;
 }
 
-.shot-main-img,
-.preview-video {
+.projects-page .shot-main-img {
   max-width: 100%;
   max-height: 100%;
   object-fit: contain;
+  border-radius: 14px;
+  background: #fff;
+  border: 1px solid rgba(31, 41, 55, 0.10);
 }
 
-.shot-strip {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  overflow: hidden; /* NO SCROLL */
-}
-
-.shot-thumb {
-  width: 100%;
-  height: 64px;
-  flex-shrink: 0;
-}
-
-.shot-thumb-img {
+.projects-page .preview-video {
   width: 100%;
   height: 100%;
   object-fit: contain;
+  border-radius: 14px;
+  background: #000;
 }
 
-/* Thumbs */
-.shot-thumb {
+/* Thumbnails */
+.projects-page .shot-strip {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  overflow: hidden;
+}
+
+.projects-page .shot-thumb {
   width: 100%;
   height: 64px;
   border-radius: 10px;
@@ -214,42 +159,100 @@
   background: rgba(255, 255, 255, 0.75);
   padding: 6px;
   cursor: pointer;
-  flex: 0 0 auto;
+  flex-shrink: 0;
 }
 
-.shot-thumb-img {
+.projects-page .shot-thumb-img {
   width: 100%;
   height: 100%;
   object-fit: contain;
-  display: block;
 }
 
-.shot-thumb.active {
+.projects-page .shot-thumb.active {
   border-color: rgba(31, 111, 99, 0.55);
   box-shadow: 0 6px 18px rgba(27, 43, 39, 0.12);
 }
 
-/* NOTE: If you have MANY thumbnails, they will simply not be visible.
-   This is the tradeoff for "NO SCROLL in preview area". */
-
-/* ---------- Projects: Actions centered under preview ---------- */
-.proj-actions-compact {
+/* Actions under preview */
+.projects-page .proj-actions-compact {
   margin-top: 10px;
   display: flex;
   justify-content: center;
   gap: 12px;
-  flex-wrap: nowrap;
 }
 
-.btn-compact {
+.projects-page .btn-compact {
   padding: 6px 10px;
   font-size: 0.85rem;
   min-height: 34px;
   width: 140px;
+  justify-content: center;
 }
 
-/* ---------- Projects: Lightbox ---------- */
-.lightbox {
+/* Bottom selection grid */
+.projects-page .proj-left {
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.projects-page .proj-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 14px;
+  margin-top: 18px;
+}
+
+@media (max-width: 1100px) {
+  .projects-page .proj-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 640px) {
+  .projects-page .proj-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.projects-page .proj-tile {
+  width: 100%;
+  text-align: left;
+  border-radius: 14px;
+  border: 1px solid var(--line);
+  background: rgba(255, 255, 255, 0.75);
+  padding: 14px;
+  cursor: pointer;
+  transition: 0.15s ease;
+  min-height: 84px;
+}
+
+.projects-page .proj-tile:hover {
+  transform: translateY(-2px);
+  border-color: rgba(0, 0, 0, 0.15);
+}
+
+.projects-page .proj-tile.active {
+  background: var(--accent-soft);
+  border-color: rgba(183, 121, 47, 0.45);
+}
+
+.projects-page .proj-tile-title {
+  font-weight: 720;
+  line-height: 1.15;
+}
+
+.projects-page .proj-tile-sub {
+  margin-top: 6px;
+  font-size: 0.85rem;
+  color: var(--muted);
+  line-height: 1.15;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* Lightbox */
+.projects-page .lightbox {
   position: fixed;
   inset: 0;
   z-index: 999;
@@ -259,7 +262,7 @@
   padding: 24px;
 }
 
-.lightbox-panel {
+.projects-page .lightbox-panel {
   width: min(1100px, 96vw);
   height: min(760px, 88vh);
   background: rgba(255, 255, 255, 0.98);
@@ -271,7 +274,7 @@
   place-items: center;
 }
 
-.lightbox-close {
+.projects-page .lightbox-close {
   position: absolute;
   top: 10px;
   right: 10px;
@@ -283,7 +286,7 @@
   font-weight: 800;
 }
 
-.lightbox-img {
+.projects-page .lightbox-img {
   width: 100%;
   height: 100%;
   object-fit: contain;

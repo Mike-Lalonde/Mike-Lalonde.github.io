@@ -1,4 +1,10 @@
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
+import "../styles/resume.css";
+
+import { Document as PdfDocument, Page as PdfPage, pdfjs } from "react-pdf";
+
+pdfjs.GlobalWorkerOptions.workerSrc =
+  "https://unpkg.com/pdfjs-dist@5.4.296/build/pdf.worker.min.mjs";
 
 const resumes = [
   { label: "AI Focused Systems Engineer (Main)", file: "/docs/resume/Mikes_Resume2026.pdf" },
@@ -10,47 +16,68 @@ const resumes = [
 export default function Resume() {
   const [selected, setSelected] = useState(resumes[0]);
 
+  // measure the LEFT column width only (so your PDF stays the right size)
+  const pdfColRef = useRef(null);
+  const [pdfWidth, setPdfWidth] = useState(600);
+
+  useEffect(() => {
+    const update = () => {
+      if (pdfColRef.current) setPdfWidth(pdfColRef.current.offsetWidth);
+    };
+    update();
+    window.addEventListener("resize", update);
+    return () => window.removeEventListener("resize", update);
+  }, []);
+
   return (
-    <div className="stack">
-      <h2>Resume</h2>
+    <div className="resume-page container">
+      <h2 className="resume-page-title">Resume</h2>
 
-      <div className="card">
-        <div className="card-title">Select a resume</div>
-
-        <div className="row wrap">
-          {resumes.map((r) => (
-            <div key={r.file} className="card" style={{ padding: 14, minWidth: 280 }}>
-              <div className="card-title">{r.label}</div>
-
-              <div className="row wrap">
-                {/* IMPORTANT: Quick view is a BUTTON, not a link */}
-                <button className="btn" type="button" onClick={() => setSelected(r)}>
-                  Quick view
-                </button>
-
-                {/* Open PDF in new tab */}
-                <a className="btn ghost" href={r.file} target="_blank" rel="noreferrer">
-                  Open
-                </a>
-
-                {/* Force download */}
-                <a className="btn ghost" href={r.file} download>
-                  Download
-                </a>
-              </div>
-            </div>
-          ))}
-        </div>
-
-        <div className="muted small" style={{ marginTop: 10 }}>
-          Quick view stays on this page. Open/Download are separate.
-        </div>
-      </div>
-
-      <div className="card">
+      <div className="card resume-preview-card">
         <div className="card-title">Quick view: {selected.label}</div>
-        <div className="pdf-wrap">
-          <iframe title="Resume PDF" src={selected.file} className="pdf-frame" />
+
+        {/* 2-column layout INSIDE the card */}
+        <div className="resume-layout">
+          {/* LEFT: PDF */}
+          <div className="resume-pdfcol" ref={pdfColRef}>
+            <div className="paper">
+              <PdfDocument file={selected.file} loading={<div className="muted">Loading…</div>}>
+                <PdfPage
+                  pageNumber={1}
+                  width={pdfWidth}
+                  renderAnnotationLayer={false}
+                  renderTextLayer={false}
+                />
+              </PdfDocument>
+            </div>
+          </div>
+
+          {/* RIGHT: selector cards (stacked) */}
+          <aside className="resume-sidecol">
+            <div className="resume-side-title">Select a resume</div>
+
+            <div className="resume-sidegrid">
+              {resumes.map((r) => (
+                <div key={r.file} className="resume-tile">
+                  <div className="resume-tile-title">{r.label}</div>
+
+                  <div className="resume-btn-row">
+                    <button className="btn" type="button" onClick={() => setSelected(r)}>
+                      Quick view
+                    </button>
+
+                    <a className="btn ghost" href={r.file} target="_blank" rel="noreferrer">
+                      Open
+                    </a>
+
+                    <a className="btn ghost" href={r.file} download>
+                      Download
+                    </a>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </aside>
         </div>
       </div>
     </div>

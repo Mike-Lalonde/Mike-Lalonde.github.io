@@ -28,18 +28,18 @@ function CategoryTabs({ value, onChange }) {
 
 function ProjectList({ items, selectedId, onSelect }) {
   return (
-    <div className="proj-list">
+    <div className="proj-grid">
       {items.map((p) => {
         const active = p.id === selectedId;
         return (
           <button
             key={p.id}
-            className={active ? "proj-item active" : "proj-item"}
+            className={active ? "proj-tile active" : "proj-tile"}
             onClick={() => onSelect(p.id)}
             type="button"
           >
-            <div className="proj-item-title">{p.title}</div>
-            <div className="proj-item-sub">{p.subtitle || p.status}</div>
+            <div className="proj-tile-title">{p.title}</div>
+            <div className="proj-tile-sub">{p.subtitle || p.status}</div>
           </button>
         );
       })}
@@ -249,7 +249,7 @@ export default function Projects() {
         <div className="card proj-left">
           <div className="card-title">{CATEGORY_META[category].label}</div>
           <div className="card-subtitle">Click a project to view details</div>
-          <ProjectList items={filtered} selectedId={selected?.id} onSelect={setSelectedId} />
+         <ProjectList items={filtered.slice(0, 12)} selectedId={selected?.id} onSelect={setSelectedId} />
         </div>
       </div>
     </div>

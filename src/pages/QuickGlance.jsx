@@ -29,7 +29,7 @@ export default function QuickGlance() {
   }, []);
 
   return (
-    <main className="quick-glance">
+    <main className="quick-glance-page">
         <header className="quick-glance-header">
         <h1 className="quick-glance-title">Quick Glance</h1>
         <p className="quick-glance-description">
