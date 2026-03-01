@@ -122,12 +122,12 @@ main.container {
 .footer {
   font-size:small;
   font-style:italic;
-  color: #e2ece5;
+  color: #033712;
   flex: 0 0 60px;  /* locks the height */
   height: 60px;
   display: flex;
   align-items: center;
-  border-top: 1px solid rgba(10, 10, 10, 0.08);
+  /* border-top: 1px solid #55ab61; */
   background: #55ab61;
 }
 
