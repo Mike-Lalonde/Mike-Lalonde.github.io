@@ -1,11 +1,11 @@
 /* src/styles/resume.css
-   Resume page: PDF left, selector stack right (same card).
-   No scrolling on this route: PDF scales by height.
+   Desktop: No scroll, PDF sized by height
+   Mobile: Scroll enabled, PDF sized by width
 */
 
 .resume-page {
   padding-bottom: 0;
-  height: calc(100dvh - 60px); /* footer height */
+  height: calc(100dvh - 60px);
   overflow: hidden;
   display: flex;
   flex-direction: column;
@@ -50,7 +50,7 @@
   background: #f3f8f4;
   border-radius: 12px;
   overflow: hidden;
-  box-shadow: 15px 15px 45px  rgba(6, 67, 27, 0.18);
+  box-shadow: 15px 15px 45px rgba(6, 67, 27, 0.18);
 }
 
 .resume-sidecol {
@@ -97,17 +97,36 @@
   font-size: 0.9rem;
 }
 
+/* ========================= */
+/* MOBILE FIX */
+/* ========================= */
+
 @media (max-width: 768px) {
+  .resume-page {
+    height: auto;
+    overflow: auto;
+    padding-bottom: 70px;
+  }
+
+  .resume-preview-card {
+    overflow: visible;
+  }
+
   .resume-layout {
-    display: flex !important;
-    flex-direction: column !important;
-    gap: 12px !important;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    overflow: visible;
   }
 
   .resume-pdfcol,
   .resume-sidecol,
   .paper {
     width: 100%;
+  }
+
+  .paper {
+    overflow: visible;
   }
 
   .resume-btn-row {
