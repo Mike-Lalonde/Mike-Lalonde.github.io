@@ -4,7 +4,7 @@ import "../styles/about.css";
 export default function About() {
   return (
     <div className="stack">
-      <h2>About Me</h2>
+      <h2 style={{ margin: "20px 20px 0px", lineHeight: 1.05, color: "#9F1D35" }}>About</h2>
 
       <div className="card">
         <div className="card-title">Who I Am</div>

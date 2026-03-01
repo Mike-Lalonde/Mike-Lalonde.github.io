@@ -6,6 +6,10 @@
   padding-bottom: 30px;
 }
 
+.projects-description{
+  margin-left:20px;
+}
+
 /* Layout containers */
 .projects-page .proj-vertical {
   display: flex;
@@ -14,6 +18,9 @@
 }
 
 .projects-page .proj-viewport {
+  width:100%;
+  max-width: 80%;
+align-self: center;
   overflow: visible;
   min-width: 0;
 }

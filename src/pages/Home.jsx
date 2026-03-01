@@ -24,6 +24,7 @@ export default function Home() {
           </div>
         </div>
       </section> */}
+        <h2  style={{ margin: "20px 20px 0px", lineHeight: 1.05, color: "#9F1D35" }}>Home</h2>
       <div className="card">
       <div className="tech-intro"><h2>Welcome to My Technical Portfolio</h2></div>
 
@@ -34,7 +35,7 @@ export default function Home() {
         </p>
 
         <p className="muted">
-          My résumé is current and fully up to date.
+          My resume is current and fully up to date.
         </p>
 
         <p className="muted">

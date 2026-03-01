@@ -57,7 +57,7 @@ export default function Nav() {
           <div className="brand-subtitle">mlalonde@yrmindinsite.ca • Halifax, NS</div>
           <div className="brand-phone">902 225 6527</div>
           {/* If you have meta text you want, swap this line */}
-          <div className="brand-meta">AI • Web • Embedded</div>
+          <div className="brand-meta">AI • IoT •  Web</div>
         </div>
 
         {/* Desktop nav */}

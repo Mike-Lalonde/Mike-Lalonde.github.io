@@ -234,11 +234,12 @@ export default function Projects() {
 
   return (
     <div className="stack projects-page">
-      <h2>Projects</h2>
-      <p>
+      <h2 style={{ margin: "20px 20px 0px", lineHeight: 1.05, color: " #9F1D35"}}>Projects</h2>
+      <div className="card">
+      <p className="projects-description">
         Select a project to view the skills/knowledge used and supporting evidence without leaving the page.
      </p> 
-
+      </div>
       <CategoryTabs value={category} onChange={setCategory} />
 
       <div className="proj-vertical">
