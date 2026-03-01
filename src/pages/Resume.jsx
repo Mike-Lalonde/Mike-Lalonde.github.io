@@ -1,6 +1,6 @@
+// src/pages/Resume.jsx
 import { useEffect, useRef, useState } from "react";
 import "../styles/resume.css";
-
 import { Document as PdfDocument, Page as PdfPage, pdfjs } from "react-pdf";
 
 pdfjs.GlobalWorkerOptions.workerSrc =
@@ -16,14 +16,23 @@ const resumes = [
 export default function Resume() {
   const [selected, setSelected] = useState(resumes[0]);
 
-  // measure the LEFT column width only (so your PDF stays the right size)
-  const pdfColRef = useRef(null);
-  const [pdfWidth, setPdfWidth] = useState(600);
+  const headerRef = useRef(null);
+  const [pdfHeight, setPdfHeight] = useState(600);
 
   useEffect(() => {
     const update = () => {
-      if (pdfColRef.current) setPdfWidth(pdfColRef.current.offsetWidth);
+      const headerH = headerRef.current?.offsetHeight || 0;
+
+      // Global footer rendered in App.jsx
+      const footerEl = document.querySelector(".footer");
+      const footerH = footerEl?.offsetHeight || 60;
+
+      const breathingRoom = 24;
+      const available = window.innerHeight - headerH - footerH - breathingRoom;
+
+      setPdfHeight(Math.max(240, Math.floor(available)));
     };
+
     update();
     window.addEventListener("resize", update);
     return () => window.removeEventListener("resize", update);
@@ -31,20 +40,27 @@ export default function Resume() {
 
   return (
     <div className="resume-page container">
-      <h2 className="resume-page-title">Resume</h2>
+      {/* HEADER AREA */}
+      <div ref={headerRef}>
+        <h2 className="resume-page-title">Resume</h2>
+      </div>
 
+      {/* MAIN CARD */}
       <div className="card resume-preview-card">
-        <div className="card-title">Quick view: {selected.label}</div>
+        <div className="card-title">Resume Selected : {selected.label}</div>
 
-        {/* 2-column layout INSIDE the card */}
         <div className="resume-layout">
           {/* LEFT: PDF */}
-          <div className="resume-pdfcol" ref={pdfColRef}>
+          <div className="resume-pdfcol">
             <div className="paper">
-              <PdfDocument file={selected.file} loading={<div className="muted">Loading…</div>}>
+              <PdfDocument
+                file={selected.file}
+                loading={<div className="muted">Loading…</div>}
+                error={<div className="muted">PDF failed to load. Check file path.</div>}
+              >
                 <PdfPage
                   pageNumber={1}
-                  width={pdfWidth}
+                  height={pdfHeight}
                   renderAnnotationLayer={false}
                   renderTextLayer={false}
                 />
@@ -52,7 +68,7 @@ export default function Resume() {
             </div>
           </div>
 
-          {/* RIGHT: selector cards (stacked) */}
+          {/* RIGHT: selector cards */}
           <aside className="resume-sidecol">
             <div className="resume-side-title">Select a resume</div>
 

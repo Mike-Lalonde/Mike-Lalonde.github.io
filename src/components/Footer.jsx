@@ -1,3 +1,5 @@
+import "../styles/App.css";
+
 export default function Footer() {
   const year = new Date().getFullYear();
   return (
@@ -8,7 +10,7 @@ export default function Footer() {
           <a href="https://github.com/Mike-Lalonde" target="_blank" rel="noreferrer">
             GitHub
           </a>
-          <span className="dot">•</span>
+          <span className="dot"> • </span>
           <a href="mailto:mlalonde@yrmindinsite.ca">Email</a>
         </div>
       </div>

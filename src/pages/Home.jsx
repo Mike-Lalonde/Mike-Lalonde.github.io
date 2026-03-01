@@ -25,7 +25,7 @@ export default function Home() {
         </div>
       </section> */}
       <div className="card">
-      <div className="card-title"><h2>Welcome to My Technical Portfolio</h2></div>
+      <div className="tech-intro"><h2>Welcome to My Technical Portfolio</h2></div>
 
         <p className="muted">
           This portfolio is a work in progress and was initiated on <strong>February 18, 2026</strong>.

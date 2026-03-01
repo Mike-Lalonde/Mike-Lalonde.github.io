@@ -13,27 +13,21 @@ export default function QRCodeCard({ url }) {
       mounted = false;
     };
   }, [url]);
-
+  
   return (
-    <div className="card qr-card">
-     <a
-  href="https://mike-lalonde.github.io/"
-  target="_blank"
-  rel="noopener noreferrer"
->
-  Mike Lalonde's Tech Portfolio
-</a>
-      <div className="card-subtitle"></div>
-
-      {dataUrl ? (
-        <img className="qr-img" src={dataUrl} alt="Portfolio QR Code" />
-      ) : (
-        <div className="muted">QR code generating…</div>
-      )}
-
-      {/* <div className="muted small">
-        Tip: you can screenshot this and put it on business cards or your resume PDF.
-      </div> */}
-    </div>
-  );
-}
+      <div className="card-qr-card">
+        {dataUrl ? (
+            <img className="qr-img" src={dataUrl} alt="Portfolio QR Code" />
+          ) : (
+              <div className="muted">QR code generating…</div>
+            )}
+            <a
+                href="https://mike-lalonde.github.io/"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Mike Lalonde's Tech Portfolio
+            </a>
+          </div>
+        );
+      }

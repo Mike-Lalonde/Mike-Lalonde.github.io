@@ -64,13 +64,15 @@ body.no-scroll {
 
 /* Card styling */
 .quick-glance-card {
-  border: 1px solid rgba(31, 41, 55, 0.12);
+  color:black;
+  border: 2px solid rgba(27, 118, 55, 0.12);
+  box-shadow: 15px 15px 10px rgb(7, 104, 7) ;
   border-radius: clamp(12px, 1.2vw, 18px);
   padding: clamp(10px, 1.2vw, 14px);
   box-sizing: border-box;
   overflow: hidden;
 
-  background: rgba(255, 255, 255, 0.7);
+  background: rgba(197, 233, 189, 0.7);
   backdrop-filter: blur(6px);
 }
 
@@ -124,9 +126,13 @@ body.no-scroll {
     gap: 10px;
   }
 
-  /* .quick-glance-description {
+  .quick-glance-description {
+    font-size: large;
+    color: darkgreen;
+    font-weight: 400;
     -webkit-line-clamp: 2;
-  } */
+    line-clamp: 2;
+  }
 
   .quick-glance-list {
     grid-template-columns: 1fr;

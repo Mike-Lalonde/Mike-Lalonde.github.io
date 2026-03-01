@@ -1,59 +1,64 @@
 /* src/styles/resume.css
    Resume page: PDF left, selector stack right (same card).
-   Responsive: stacks on small screens.
+   No scrolling on this route: PDF scales by height.
 */
 
 .resume-page {
-  padding-bottom: 14px;
+  padding-bottom: 0;
+  height: calc(100dvh - 60px); /* footer height */
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
 }
 
-/* Reduce wasted space from the H2 without shrinking font */
 .resume-page-title {
-  margin: 6px 0 10px;     /* tighten top/bottom space */
+  margin: 6px 0 10px;
   line-height: 1.05;
 }
 
-/* Big card that holds BOTH pdf + selectors */
 .resume-preview-card {
-  padding: 18px;
+  flex: 1;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
 }
 
-/* 2-column layout inside the card */
 .resume-layout {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) 350px; /* left grows, right fixed */
-  gap: 14px;                                   /* space between pdf and selectors */
+  grid-template-columns: minmax(0, 1fr) 350px;
+  gap: 14px;
   align-items: start;
   margin-top: 10px;
+
+  flex: 1;
+  overflow: hidden;
 }
 
-/* LEFT column wrapper */
 .resume-pdfcol {
   min-width: 0;
+  overflow: hidden;
 }
 
-/* Paper area: DO NOT center — top-left keeps it visually closer */
 .paper {
   display: grid;
-  place-items: start;    /* key: prevents “big empty space” look */
+  place-items: start;
   overflow: hidden;
   padding: 0;
 }
 
-/* Keep react-pdf page looking like paper */
 .paper .react-pdf__Page {
-  background: #fff;
+  background: #f3f8f4;
   border-radius: 12px;
   overflow: hidden;
-  box-shadow: 0 14px 40px rgba(0, 0, 0, 0.18);
+  box-shadow: 15px 15px 45px  rgba(6, 67, 27, 0.18);
 }
 
-/* RIGHT selector column */
 .resume-sidecol {
   display: flex;
   flex-direction: column;
   gap: 10px;
-  justify-self: start;   /* hug left edge of its column */
+  justify-self: start;
+  overflow: hidden;
 }
 
 .resume-side-title {
@@ -61,18 +66,16 @@
   margin: 0 0 4px 0;
 }
 
-/* Stacked tiles */
 .resume-sidegrid {
   display: grid;
   gap: 12px;
 }
 
-/* Tile styling (compact, not huge cards) */
 .resume-tile {
   padding: 12px;
   border-radius: 14px;
   border: 1px solid var(--line);
-  background: rgba(255, 255, 255, 0.65);
+  background: rgba(156, 230, 142, 0.65);
 }
 
 .resume-tile-title {
@@ -81,44 +84,28 @@
   margin-bottom: 10px;
 }
 
-/* Buttons row inside each tile */
 .resume-btn-row {
   display: flex;
   gap: 10px;
   flex-wrap: nowrap;
 }
 
-/* Slightly smaller buttons on resume page */
 .resume-page .btn {
+  background-color: rgb(142, 147, 143);
   padding: 7px 12px;
   border-radius: 10px;
   font-size: 0.9rem;
 }
 
-/* Help text */
-.resume-help {
-  margin-top: 2px;
-}
-
-/* Responsive: when screen is narrow, stack selectors below PDF */
 @media (max-width: 768px) {
-
   .resume-layout {
     display: flex !important;
     flex-direction: column !important;
     gap: 12px !important;
-    grid-template-columns: 1fr;   /* stack */
   }
 
-  .resume-pdfcol {
-    width: 100%;
-  }
-
-  .resume-sidecol {
-    width: 100%;
-  }
-
-
+  .resume-pdfcol,
+  .resume-sidecol,
   .paper {
     width: 100%;
   }
@@ -130,5 +117,4 @@
   .resume-page .btn {
     flex: 1 1 auto;
   }
-
 }

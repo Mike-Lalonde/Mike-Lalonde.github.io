@@ -32,11 +32,13 @@ export default function QuickGlance() {
       <div className="quick-glance">
         <header className="quick-glance-header">
           <h1 className="quick-glance-title">Quick Glance</h1>
-          <p className="quick-glance-description">
-            This section provides a high-level overview of my technical capabilities for quick review.
-            Detailed implementations and applied architecture decisions can be explored in the Projects section.
-            Portfolio completion target: March 20th, 2026.
-          </p>
+          <div className="card">
+            <p className="quick-glance-description">
+              This section provides a high-level overview of my technical capabilities for quick review.
+              Detailed implementations and applied architecture decisions can be explored in the Projects section.
+              Portfolio completion target: March 20th, 2026.
+            </p>
+          </div>
         </header>
 
         <hr className="quick-glance-divider" />
