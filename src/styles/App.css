@@ -162,3 +162,7 @@ main.container {
 .chip.accent-web { border-color: rgba(43,108,176,0.25); background: var(--web-soft); }
 .chip.accent-embedded { border-color: rgba(47,133,90,0.25); background: var(--embedded-soft); }
 .chip.accent-ai { border-color: rgba(107,70,193,0.25); background: var(--ai-soft); }
+ .qr-img {
+    width: 80px;   /* change this number */
+    height: auto;
+ }

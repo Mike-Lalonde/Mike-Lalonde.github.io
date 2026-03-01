@@ -38,7 +38,7 @@ export default function Home() {
         </p>
 
         <p className="muted">
-          This site will represent curated samples from more than <strong>120 projects</strong> completed across
+          This site will represent curated samples from more than <strong>120 manually programmed projects</strong> completed across
           three technical programs. The goal is to showcase representative work that demonstrates both
           breadth and depth of applied capability.
         </p>

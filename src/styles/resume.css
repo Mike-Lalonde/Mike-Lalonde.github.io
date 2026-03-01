@@ -104,16 +104,20 @@
 @media (max-width: 768px) {
 
   .resume-layout {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 12px !important;
     grid-template-columns: 1fr;   /* stack */
+  }
+
+  .resume-pdfcol {
+    width: 100%;
   }
 
   .resume-sidecol {
     width: 100%;
   }
 
-  .resume-pdfcol {
-    width: 100%;
-  }
 
   .paper {
     width: 100%;

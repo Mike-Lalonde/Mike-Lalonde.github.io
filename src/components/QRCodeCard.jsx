@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import QRCode from "qrcode";
-
+import "../styles/App.css";
 export default function QRCodeCard({ url }) {
   const [dataUrl, setDataUrl] = useState("");
 
@@ -16,8 +16,14 @@ export default function QRCodeCard({ url }) {
 
   return (
     <div className="card qr-card">
-      <div className="card-title">Scan to view my portfolio</div>
-      <div className="card-subtitle">{url}</div>
+     <a
+  href="https://mike-lalonde.github.io/"
+  target="_blank"
+  rel="noopener noreferrer"
+>
+  Mike Lalonde's Tech Portfolio
+</a>
+      <div className="card-subtitle"></div>
 
       {dataUrl ? (
         <img className="qr-img" src={dataUrl} alt="Portfolio QR Code" />
@@ -25,9 +31,9 @@ export default function QRCodeCard({ url }) {
         <div className="muted">QR code generating…</div>
       )}
 
-      <div className="muted small">
+      {/* <div className="muted small">
         Tip: you can screenshot this and put it on business cards or your resume PDF.
-      </div>
+      </div> */}
     </div>
   );
 }
