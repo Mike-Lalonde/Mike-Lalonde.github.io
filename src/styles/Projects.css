@@ -31,20 +31,21 @@
   text-align: center;
   padding: 10px 0;
   border-radius: 999px;
-  border: 1px solid var(--line);
-  background: rgba(255, 255, 255, 0.65);
-  color: var(--text);
+  background: rgba(87, 242, 92, 0.12);   /* soft green */
+  border: 1px solid rgba(24, 240, 20, 0.35);
+  color: #09190f;    
   cursor: pointer;
   font-weight: 650;
 }
 
 .projects-page .proj-tab:hover {
-  border-color: rgba(31, 41, 55, 0.18);
+  background: rgba(34, 197, 94, 0.18);
+  border-color: rgba(34, 197, 94, 0.55);
 }
 
 .projects-page .proj-tab.active {
-  border-color: rgba(183, 121, 47, 0.45);
-  background: var(--accent-soft);
+  background: rgba(226, 194, 12, 0.25);
+  border-color: rgba(36, 248, 113, 0.75);
 }
 
 /* Accent active tab */
@@ -53,11 +54,11 @@
   background: var(--web-soft);
 }
 .projects-page .proj-tab.accent-embedded.active {
-  border-color: rgba(47, 133, 90, 0.45);
+  border-color: rgba(63, 212, 137, 0.45);
   background: var(--embedded-soft);
 }
 .projects-page .proj-tab.accent-ai.active {
-  border-color: rgba(107, 70, 193, 0.45);
+  border-color: rgba(164, 147, 205, 0.45);
   background: var(--ai-soft);
 }
 
@@ -292,4 +293,105 @@
   object-fit: contain;
   border-radius: 14px;
   background: #fff;
+}
+
+/* ===== Mobile: iPhone 11 Pro and similar (<= 430px) ===== */
+@media (max-width: 430px) {
+  .projects-page {
+    padding-bottom: 18px;
+  }
+
+  .projects-page .proj-vertical {
+    gap: 18px;
+  }
+
+  /* Tabs: stack nicely */
+  .projects-page .proj-tabs {
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+
+  .projects-page .proj-tab {
+    padding: 10px 0;
+    font-size: 0.95rem;
+  }
+
+  /* Header: allow wrapping */
+  .projects-page .proj-detail-head {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 6px;
+  }
+
+  .projects-page .proj-detail-status {
+    white-space: normal;
+  }
+
+  .projects-page .proj-summary {
+    margin: 8px 0 12px;
+    line-height: 1.4;
+  }
+
+  /* Preview: switch from 2-column (main + strip) to vertical */
+  .projects-page .proj-preview {
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr auto;
+    height: auto;            /* stop forcing desktop preview height */
+    gap: 10px;
+    padding: 10px;
+  }
+
+  .projects-page .preview-main {
+    min-height: 220px;       /* keeps it usable on mobile */
+  }
+
+  /* Thumbnails: horizontal strip */
+  .projects-page .shot-strip {
+    flex-direction: row;
+    gap: 10px;
+    overflow-x: auto;
+    overflow-y: hidden;
+    padding-bottom: 6px;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .projects-page .shot-thumb {
+    width: 78px;
+    height: 54px;
+    padding: 6px;
+    flex: 0 0 auto;
+  }
+
+  /* Actions: stack buttons */
+  .projects-page .proj-actions-compact {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 10px;
+  }
+
+  .projects-page .btn-compact {
+    width: 100%;
+  }
+
+  /* Bottom grid: already goes to 1 col at 640, but tighten spacing */
+  .projects-page .proj-grid {
+    gap: 10px;
+    margin-top: 14px;
+  }
+
+  .projects-page .proj-tile {
+    padding: 12px;
+    min-height: 76px;
+  }
+
+  /* Lightbox: better fit */
+  .projects-page .lightbox {
+    padding: 14px;
+  }
+
+  .projects-page .lightbox-panel {
+    width: 96vw;
+    height: 82vh;
+    padding: 10px;
+  }
 }
